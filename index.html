@@ -27,10 +27,10 @@
             background-color: var(--bg-black);
             color: var(--text-white);
             font-family: var(--font-main);
-            overflow: hidden; /* Чтобы главная не скроллилась */
+            overflow: hidden;
         }
 
-        /* ПЛАВНОЕ ПОЯВЛЕНИЕ (из твоего исходника) */
+        /* ПЛАВНОЕ ПОЯВЛЕНИЕ (как в твоем оригинале) */
         .fade-wrapper { 
             opacity: 0; 
             transform: translateY(30px);
@@ -44,12 +44,12 @@
             opacity: 1; transform: translateY(0); filter: blur(0);
         }
 
-        /* ФОНОВАЯ КАРТИНКА (Путь исправлен на корень) */
+        /* ФОНОВАЯ КАРТИНКА - ПУТЬ ИСПРАВЛЕН */
         .hero-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8)), 
-                        url('main.png') center/cover no-repeat;
+                        url('images/homepage.png') center/cover no-repeat;
             z-index: -1;
         }
 
@@ -87,8 +87,8 @@
 
         .hero-content h1 {
             font-family: var(--font-display);
-            font-size: clamp(3rem, 10vw, 6rem);
-            line-height: 0.9;
+            font-size: clamp(3rem, 10vw, 6.5rem);
+            line-height: 0.85;
             text-transform: uppercase;
             margin-bottom: 2rem;
         }
@@ -107,9 +107,8 @@
             clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
             transition: 0.3s;
         }
-        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(204, 255, 0, 0.2); }
 
-        /* CART PANEL (Твой стиль) */
+        /* КОРЗИНА (Твоя структура) */
         .cart-panel {
             position: fixed; right: -400px; top: 0; width: 350px; height: 100%;
             background: #0a0a0a; border-left: 1px solid var(--shift-lime);
@@ -143,14 +142,13 @@
             <h2 style="font-family: var(--font-display); font-size: 1.2rem; text-transform: uppercase;">Active Protocol</h2>
             <span class="close-cart" onclick="toggleCart()">Close —</span>
         </div>
-        <div id="cart-items" style="color: #555; text-align: center; margin-top: 50px;">
+        <div id="cart-items" style="color: #444; text-align: center; margin-top: 50px; font-size: 0.8rem; text-transform: uppercase;">
             Protocol is empty.
         </div>
     </div>
     <div id="cart-overlay" onclick="toggleCart()"></div>
 
     <script>
-        // Появление при загрузке
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => { document.getElementById('wrapper').classList.add('is-visible'); }, 100);
         });
