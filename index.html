@@ -17,18 +17,17 @@
             --font-display: 'Archivo Black', sans-serif;
         }
 
-        /* ЗАЩИТА ОТ КОПИРОВАНИЯ */
+        /* ГЛОБАЛЬНЫЕ СТИЛИ */
         * {
             margin: 0; padding: 0; box-sizing: border-box;
-            -webkit-user-select: none; -moz-user-select: none;
-            -ms-user-select: none; user-select: none;
+            -webkit-user-select: none; user-select: none;
         }
 
         body {
             background-color: var(--bg-black);
             color: var(--text-white);
             font-family: var(--font-main);
-            overflow: hidden;
+            overflow-x: hidden;
         }
 
         /* АНИМАЦИЯ ПОЯВЛЕНИЯ */
@@ -36,16 +35,14 @@
             opacity: 0; 
             transform: translateY(20px);
             filter: blur(10px);
-            transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), 
-                        transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), 
-                        filter 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .fade-wrapper.is-visible {
             opacity: 1; transform: translateY(0); filter: blur(0);
         }
 
-        /* НАВИГАЦИЯ (ИСПРАВЛЕНО ДЛЯ МОБИЛОК) */
+        /* НАВИГАЦИЯ */
         nav {
             display: flex;
             justify-content: space-between;
@@ -57,7 +54,7 @@
             background: rgba(15, 15, 15, 0.85);
             backdrop-filter: blur(15px);
             border-bottom: 1px solid #222;
-            flex-wrap: wrap; /* Позволяет ссылкам перепрыгивать вниз */
+            flex-wrap: wrap;
         }
 
         .logo {
@@ -71,10 +68,7 @@
 
         .logo span { color: var(--shift-lime); }
 
-        .nav-right { display: flex; align-items: center; gap: 2rem; }
-
         .nav-links { display: flex; gap: 2rem; }
-
         .nav-links a {
             text-decoration: none;
             color: var(--text-white);
@@ -93,10 +87,9 @@
             font-size: 0.7rem;
             cursor: pointer;
             text-transform: uppercase;
-            transition: 0.3s;
         }
 
-        /* HERO */
+        /* HERO SECTION */
         .hero {
             height: 100vh;
             display: flex;
@@ -142,24 +135,72 @@
             text-transform: uppercase;
             font-size: 0.9rem;
             display: inline-block;
-            transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: 0.3s;
         }
 
-        .btn-shift:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(204, 255, 0, 0.3);
+        /* НОВЫЙ БЛОК: CREDITS & TOOLS */
+        .credits-section {
+            padding: 80px 5% 150px;
+            background: var(--bg-black);
+            border-top: 1px solid #111;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            text-align: center;
         }
 
+        .author-label {
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-white);
+        }
+
+        .author-label span {
+            color: var(--shift-lime);
+            border: 1px solid var(--shift-lime);
+            padding: 3px 10px;
+            margin-left: 8px;
+        }
+
+        .tools-wrap {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            max-width: 800px;
+        }
+
+        .tool-tag {
+            font-size: 0.6rem;
+            font-weight: 800;
+            color: var(--text-gray);
+            border: 1px solid #222;
+            padding: 6px 14px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .tool-tag:hover {
+            color: var(--shift-lime);
+            border-color: var(--shift-lime);
+            background: rgba(204, 255, 0, 0.05);
+        }
+
+        /* STATUS BAR */
         .status-bar {
-            position: absolute;
+            position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
             background: #151515;
-            padding: 1.5rem 5%;
+            padding: 1.2rem 5%;
             display: flex;
             gap: 40px;
             border-top: 1px solid #222;
+            z-index: 90;
         }
 
         .status-item {
@@ -178,7 +219,7 @@
             box-shadow: 0 0 10px var(--shift-lime);
         }
 
-        /* CART PANEL */
+        /* КОРЗИНА */
         .cart-panel {
             position: fixed; right: -400px; top: 0; width: 350px; height: 100%;
             background: #0a0a0a; border-left: 1px solid var(--shift-lime);
@@ -192,29 +233,17 @@
 
         /* АДАПТИВНОСТЬ */
         @media (max-width: 768px) {
-            nav { padding: 1rem 5%; justify-content: space-between; }
-            
+            nav { padding: 1rem 5%; }
             .nav-links { 
-                order: 3; /* Ссылки уходят вниз под лого */
-                width: 100%; 
-                justify-content: center; 
-                gap: 2.5rem; 
-                padding-top: 15px;
-                border-top: 1px solid #222;
-                margin-top: 10px;
+                order: 3; width: 100%; justify-content: center; 
+                gap: 2rem; padding-top: 15px; border-top: 1px solid #222; margin-top: 10px;
             }
-            
-            .nav-links a { font-size: 0.7rem; margin-left: 0; }
-            .logo { font-size: 1rem; }
-            
             .hero { 
                 background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('images/homepage.png') center/cover; 
-                text-align: center; 
-                justify-content: center; 
+                text-align: center; justify-content: center; 
             }
-            .hero-content p { margin: 0 auto 3rem; }
             .status-bar { display: none; }
-            .cart-panel { width: 100%; right: -100%; }
+            .credits-section { padding-bottom: 60px; }
         }
     </style>
 </head>
@@ -241,13 +270,26 @@
                 <p>Specialty grade beans. Precision roasting. Ready for pickup in under 180 seconds.</p>
                 <a href="menu.html" class="btn-shift">Order for Pickup</a>
             </div>
-
-            <div class="status-bar">
-                <div class="status-item"><div class="dot"></div> Shoreditch: LIVE</div>
-                <div class="status-item"><div class="dot"></div> Soho: LIVE</div>
-                <div class="status-item" style="opacity: 0.5;"><div class="dot" style="background:#444; box-shadow:none;"></div> Peckham: SOON</div>
-            </div>
         </header>
+
+        <section class="credits-section">
+            <div class="author-label">Created by <span>astagme</span></div>
+            
+            <div class="tools-wrap">
+                <div class="tool-tag">Adobe Photoshop</div>
+                <div class="tool-tag">Adobe Illustrator</div>
+                <div class="tool-tag">Figma</div>
+                <div class="tool-tag">HTML5 / CSS3</div>
+                <div class="tool-tag">Vanilla JavaScript</div>
+                <div class="tool-tag">UI/UX Design</div>
+            </div>
+        </section>
+
+        <div class="status-bar">
+            <div class="status-item"><div class="dot"></div> Shoreditch: LIVE</div>
+            <div class="status-item"><div class="dot"></div> Soho: LIVE</div>
+            <div class="status-item" style="opacity: 0.5;"><div class="dot" style="background:#444; box-shadow:none;"></div> Peckham: SOON</div>
+        </div>
     </div>
 
     <div id="side-cart" class="cart-panel">
@@ -260,10 +302,12 @@
     <div id="cart-overlay" onclick="toggleCart()"></div>
 
     <script>
+        // Появление контента
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => { document.getElementById('wrapper').classList.add('is-visible'); }, 100);
         });
 
+        // Логика корзины
         function toggleCart() {
             document.getElementById('side-cart').classList.toggle('active');
             document.getElementById('cart-overlay').classList.toggle('active');
