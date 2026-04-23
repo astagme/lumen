@@ -18,22 +18,10 @@
             --font-main: 'Inter', sans-serif;
         }
 
-        /* ЭФФЕКТ ПЛАВНОГО ПОЯВЛЕНИЯ (FADE IN) */
-        @keyframes pageFade {
-            from { 
-                opacity: 0; 
-                transform: translateY(10px); 
-                filter: blur(5px);
-            }
-            to { 
-                opacity: 1; 
-                transform: translateY(0); 
-                filter: blur(0);
-            }
-        }
-
-        .fade-in-container {
-            animation: pageFade 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        /* АНИМАЦИЯ ПЛАВНОГО ВХОДА */
+        @keyframes pageLoad {
+            from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
 
         * {
@@ -47,7 +35,12 @@
             color: var(--text-white);
             font-family: var(--font-main);
             line-height: 1.6;
-            padding-bottom: 100px;
+            padding-bottom: 120px;
+            overflow-x: hidden;
+        }
+
+        .fade-wrapper {
+            animation: pageLoad 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         /* Navigation */
@@ -57,8 +50,8 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #222;
-            background: rgba(15, 15, 15, 0.9);
-            backdrop-filter: blur(10px);
+            background: rgba(15, 15, 15, 0.8);
+            backdrop-filter: blur(15px);
             position: sticky;
             top: 0;
             z-index: 100;
@@ -68,8 +61,9 @@
         .logo span { color: var(--shift-lime); }
         .back-link { text-decoration: none; color: var(--shift-lime); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
 
+        /* Hero */
         .menu-hero {
-            height: 250px;
+            height: 200px;
             background: linear-gradient(to top, var(--bg-black), transparent), 
                         url('images/menu.png') center/cover no-repeat;
             display: flex;
@@ -78,13 +72,19 @@
             filter: grayscale(100%) contrast(110%);
         }
 
-        .menu-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; }
+        .menu-hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); text-transform: uppercase; }
 
-        .menu-container { padding: 40px 5%; max-width: 1200px; margin: 0 auto; }
+        /* Контейнер меню */
+        .menu-container { padding: 20px 5%; max-width: 1300px; margin: 0 auto; }
         .category-header { border-left: 4px solid var(--shift-lime); padding-left: 15px; margin: 60px 0 30px; }
-        .category-header h2 { font-family: var(--font-display); text-transform: uppercase; font-size: 1.5rem; }
+        .category-header h2 { font-family: var(--font-display); text-transform: uppercase; font-size: 1.4rem; letter-spacing: 1px; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        /* Сетка карточек */
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+        }
 
         .menu-card {
             background: var(--card-bg);
@@ -94,42 +94,59 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            height: 100%; /* Все карточки одной высоты */
         }
 
-        .menu-card img { width: 100%; height: auto; margin-bottom: 1.5rem; transition: 0.4s; }
-        .menu-card:hover { border-color: var(--shift-lime); transform: translateY(-5px); background: #1a1a1a; }
-        .menu-card:hover img { transform: scale(1.05); filter: drop-shadow(0 0 10px rgba(204, 255, 0, 0.2)); }
+        /* ИСПРАВЛЕНИЕ КАРТИНОК: ОДИНАКОВЫЙ РАЗМЕР */
+        .menu-card img { 
+            width: 100%; 
+            height: 250px; /* Фиксированная высота контейнера */
+            object-fit: contain; /* Картинка вписывается без искажений */
+            margin-bottom: 1.5rem; 
+            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            display: block;
+        }
+
+        .menu-card:hover { border-color: var(--shift-lime); transform: translateY(-8px); background: #1a1a1a; }
+        .menu-card:hover img { transform: scale(1.08); filter: drop-shadow(0 0 15px rgba(204, 255, 0, 0.15)); }
 
         .tag { font-size: 0.6rem; background: var(--shift-lime); color: #000; padding: 2px 8px; font-weight: 800; display: inline-block; margin-bottom: 10px; text-transform: uppercase; }
-        .menu-card h3 { font-family: var(--font-display); font-size: 1rem; margin-bottom: 8px; text-transform: uppercase; }
-        .menu-card p { color: var(--text-gray); font-size: 0.85rem; margin-bottom: 20px; }
+        .menu-card h3 { font-family: var(--font-display); font-size: 1rem; margin-bottom: 8px; text-transform: uppercase; color: var(--text-white); }
+        .menu-card p { color: var(--text-gray); font-size: 0.85rem; margin-bottom: 25px; flex-grow: 1; }
         
-        .card-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; }
-        .price { font-weight: 800; color: var(--shift-lime); font-size: 1.1rem; }
-        .add-btn { width: 35px; height: 35px; background: #222; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px solid #222; }
+        .price { font-weight: 800; color: var(--shift-lime); font-size: 1.2rem; }
+        .add-btn { width: 40px; height: 40px; background: #222; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; transition: 0.3s; }
         .menu-card:hover .add-btn { background: var(--shift-lime); color: black; }
 
+        /* Нижняя панель */
         .customizer {
             background: var(--shift-lime);
             color: black;
-            padding: 15px 5%;
+            padding: 18px 5%;
             position: fixed;
             bottom: 0;
             width: 100%;
             display: flex;
             justify-content: center;
-            gap: 40px;
+            gap: 50px;
             font-weight: 800;
             text-transform: uppercase;
             font-size: 0.75rem;
             z-index: 100;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.6);
+        }
+
+        @media (max-width: 768px) {
+            .customizer { gap: 20px; font-size: 0.6rem; padding: 15px; }
+            .grid { grid-template-columns: 1fr; }
+            .menu-card img { height: 200px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="fade-in-container">
-
+    <div class="fade-wrapper">
         <nav>
             <a href="index.html" class="logo">LUMEN<span>SHIFT</span></a>
             <a href="index.html" class="back-link">← Terminal</a>
@@ -146,7 +163,7 @@
                 <div class="grid">
                     <div class="menu-card">
                         <div>
-                            <img src="menu/shiftespresso.png" alt="Shift Espresso">
+                            <img src="menu/shiftespresso.png" alt="Espresso">
                             <h3>Shift Espresso</h3>
                             <p>High-clarity double extraction blend.</p>
                         </div>
@@ -209,7 +226,7 @@
                 <div class="grid">
                     <div class="menu-card">
                         <div>
-                            <img src="menu/shiftbagel.png" alt="Shift Bagel">
+                            <img src="menu/shiftbagel.png" alt="Bagel">
                             <h3>Shift Bagel</h3>
                             <p>Smoked salmon & chive cream cheese.</p>
                         </div>
@@ -255,13 +272,14 @@
                     </div>
                 </div>
             </section>
-
         </main>
 
         <div class="customizer">
             <span>Pickup: 2 Mins</span>
             <span>Neural Network: Online</span>
+            <span>Shift: Active</span>
         </div>
+    </div>
 
-    </div> </body>
+</body>
 </html>
