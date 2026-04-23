@@ -52,7 +52,6 @@
         .logo { font-family: var(--font-display); text-decoration: none; color: white; font-size: 1.1rem; text-transform: uppercase; }
         .logo span { color: var(--shift-lime); }
 
-        /* Кнопка вызова корзины */
         .cart-trigger {
             background: var(--shift-lime);
             color: black;
@@ -63,10 +62,28 @@
             clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
             transition: 0.3s;
         }
-        .cart-trigger:hover { transform: scale(1.05); }
+
+        /* --- ВОССТАНОВЛЕННЫЙ БАННЕР --- */
+        .menu-hero {
+            height: 300px;
+            background: linear-gradient(to top, var(--bg-black), transparent), 
+                        url('images/menu.png') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            filter: grayscale(100%) contrast(110%);
+            border-bottom: 1px solid #111;
+        }
+
+        .menu-hero h1 { 
+            font-family: var(--font-display); 
+            font-size: clamp(2.5rem, 6vw, 4.5rem); 
+            text-transform: uppercase;
+            line-height: 0.9;
+        }
 
         /* Сетка и карточки */
-        .menu-container { padding: 40px 5% 120px; max-width: 1200px; margin: 0 auto; }
+        .menu-container { padding: 40px 5% 150px; max-width: 1200px; margin: 0 auto; }
         .category-header { border-left: 4px solid var(--shift-lime); padding-left: 15px; margin: 60px 0 30px; }
         .category-header h2 { font-family: var(--font-display); text-transform: uppercase; font-size: 1.4rem; }
 
@@ -118,7 +135,25 @@
         }
         .menu-card:hover .add-btn { background: var(--shift-lime); color: black; }
 
-        /* Выдвижная панель корзины */
+        /* --- ВОССТАНОВЛЕННЫЙ ТЕРМИНАЛ --- */
+        .customizer {
+            background: var(--shift-lime);
+            color: black;
+            padding: 18px 5%;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            z-index: 90;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.8);
+        }
+
+        /* Корзина */
         .cart-panel {
             position: fixed;
             right: -400px;
@@ -132,34 +167,19 @@
             padding: 40px 25px;
             display: flex;
             flex-direction: column;
-            box-shadow: -20px 0 50px rgba(0,0,0,0.8);
         }
         .cart-panel.active { right: 0; }
-
         .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
-        .cart-header h2 { font-family: var(--font-display); font-size: 1rem; text-transform: uppercase; }
         .close-cart { color: var(--shift-lime); cursor: pointer; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
-
         #cart-items { flex-grow: 1; overflow-y: auto; }
-        .cart-item {
-            display: flex; justify-content: space-between; align-items: center;
-            margin-bottom: 15px; padding-bottom: 15px; border-bottom: 1px solid #111;
-            font-size: 0.9rem;
-        }
-
+        .cart-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #111; font-size: 0.9rem; }
         .cart-footer-panel { border-top: 1px solid var(--shift-lime); padding-top: 25px; }
         .total { display: flex; justify-content: space-between; font-family: var(--font-display); font-size: 1.1rem; }
         .checkout-btn {
             width: 100%; background: var(--shift-lime); border: none; padding: 18px;
-            font-family: var(--font-display); font-size: 0.8rem; cursor: pointer; margin-top: 25px;
-            transition: 0.3s;
+            font-family: var(--font-display); cursor: pointer; margin-top: 25px;
         }
-        .checkout-btn:hover { letter-spacing: 2px; }
-
-        #cart-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); display: none; z-index: 999; backdrop-filter: blur(5px);
-        }
+        #cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; z-index: 999; backdrop-filter: blur(5px); }
         #cart-overlay.active { display: block; }
     </style>
 </head>
@@ -172,6 +192,10 @@
                 CART [<span id="cart-count">0</span>]
             </div>
         </nav>
+
+        <header class="menu-hero">
+            <h1>Protocol<br>Menu</h1>
+        </header>
 
         <main class="menu-container">
             
@@ -220,6 +244,12 @@
             </section>
 
         </main>
+
+        <div class="customizer">
+            <span>Neural Network: Online</span>
+            <span>Pickup: 2 Mins</span>
+            <span>Shift Status: Active</span>
+        </div>
     </div>
 
     <div id="side-cart" class="cart-panel">
@@ -227,68 +257,47 @@
             <h2>Active Protocol</h2>
             <span class="close-cart" onclick="toggleCart()">CLOSE —</span>
         </div>
-        <div id="cart-items">
-            </div>
+        <div id="cart-items"></div>
         <div class="cart-footer-panel">
-            <div class="total">
-                <span>TOTAL</span>
-                <span>£<span id="cart-total">0.00</span></span>
-            </div>
-            <button class="checkout-btn">EXECUTE ORDER</button>
+            <div class="total"><span>TOTAL</span><span>£<span id="cart-total">0.00</span></span></div>
+            <button class="checkout-btn" onclick="alert('Order Executed!')">EXECUTE ORDER</button>
         </div>
     </div>
     <div id="cart-overlay" onclick="toggleCart()"></div>
 
     <script>
         let cart = [];
-
         function toggleCart() {
             document.getElementById('side-cart').classList.toggle('active');
             document.getElementById('cart-overlay').classList.toggle('active');
         }
-
         document.querySelectorAll('.add-btn').forEach(button => {
             button.addEventListener('click', () => {
                 const card = button.closest('.menu-card');
                 const name = card.getAttribute('data-name');
                 const price = parseFloat(card.getAttribute('data-price'));
-                
-                addToCart(name, price);
-                
-                // Эффект нажатия
+                cart.push({name, price});
+                updateCartUI();
                 button.innerText = '✓';
                 setTimeout(() => button.innerText = '+', 600);
             });
         });
-
-        function addToCart(name, price) {
-            cart.push({name, price});
-            updateCartUI();
-        }
-
         function updateCartUI() {
             const cartContainer = document.getElementById('cart-items');
             const countLabel = document.getElementById('cart-count');
             const totalLabel = document.getElementById('cart-total');
-            
             cartContainer.innerHTML = '';
             let currentTotal = 0;
-
-            cart.forEach((item, index) => {
+            cart.forEach(item => {
                 const div = document.createElement('div');
                 div.className = 'cart-item';
-                div.innerHTML = `
-                    <span>${item.name}</span>
-                    <span style="color: var(--shift-lime)">£${item.price.toFixed(2)}</span>
-                `;
+                div.innerHTML = `<span>${item.name}</span><span style="color: var(--shift-lime)">£${item.price.toFixed(2)}</span>`;
                 cartContainer.appendChild(div);
                 currentTotal += item.price;
             });
-
             countLabel.innerText = cart.length;
             totalLabel.innerText = currentTotal.toFixed(2);
         }
     </script>
-
 </body>
 </html>
