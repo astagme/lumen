@@ -27,29 +27,29 @@
             background-color: var(--bg-black);
             color: var(--text-white);
             font-family: var(--font-main);
-            overflow: hidden;
+            overflow: hidden; /* Чтобы главная не скроллилась */
         }
 
-        /* ПЛАВНОЕ ПОЯВЛЕНИЕ */
+        /* ПЛАВНОЕ ПОЯВЛЕНИЕ (из твоего исходника) */
         .fade-wrapper { 
             opacity: 0; 
-            transform: scale(1.02);
-            filter: blur(15px);
-            transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1), 
-                        transform 2s cubic-bezier(0.16, 1, 0.3, 1), 
-                        filter 2s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(30px);
+            filter: blur(10px);
+            transition: opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 1.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 1.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .fade-wrapper.is-visible {
-            opacity: 1; transform: scale(1); filter: blur(0);
+            opacity: 1; transform: translateY(0); filter: blur(0);
         }
 
-        /* BACKGROUND - Исправил путь, если картинка в той же папке */
+        /* ФОНОВАЯ КАРТИНКА (Путь исправлен на корень) */
         .hero-bg {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8)), 
-                        url('homepage.png') center/cover no-repeat; 
+                        url('main.png') center/cover no-repeat;
             z-index: -1;
         }
 
@@ -87,17 +87,17 @@
 
         .hero-content h1 {
             font-family: var(--font-display);
-            font-size: clamp(3.5rem, 10vw, 7rem);
+            font-size: clamp(3rem, 10vw, 6rem);
             line-height: 0.9;
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .hero-content h1 span { color: var(--shift-lime); }
 
         .cta-btn {
             display: inline-block;
-            padding: 20px 45px;
+            padding: 22px 50px;
             background: var(--shift-lime);
             color: black;
             text-decoration: none;
@@ -107,8 +107,9 @@
             clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
             transition: 0.3s;
         }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(204, 255, 0, 0.2); }
 
-        /* CART PANEL */
+        /* CART PANEL (Твой стиль) */
         .cart-panel {
             position: fixed; right: -400px; top: 0; width: 350px; height: 100%;
             background: #0a0a0a; border-left: 1px solid var(--shift-lime);
@@ -117,7 +118,7 @@
         }
         .cart-panel.active { right: 0; }
         .close-cart { color: var(--shift-lime); cursor: pointer; text-transform: uppercase; font-size: 0.7rem; font-weight: 800; }
-        #cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; z-index: 999; }
+        #cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; z-index: 999; backdrop-filter: blur(5px); }
         #cart-overlay.active { display: block; }
     </style>
 </head>
@@ -138,17 +139,20 @@
     </div>
 
     <div id="side-cart" class="cart-panel">
-        <div style="display:flex; justify-content: space-between; align-items:center;">
-            <h2 style="font-family: var(--font-display); font-size: 1.2rem;">Protocol</h2>
+        <div style="display:flex; justify-content: space-between; align-items:center; margin-bottom: 40px;">
+            <h2 style="font-family: var(--font-display); font-size: 1.2rem; text-transform: uppercase;">Active Protocol</h2>
             <span class="close-cart" onclick="toggleCart()">Close —</span>
         </div>
-        <p style="margin-top: 50px; text-align: center; color: #555;">Your protocol is empty.</p>
+        <div id="cart-items" style="color: #555; text-align: center; margin-top: 50px;">
+            Protocol is empty.
+        </div>
     </div>
     <div id="cart-overlay" onclick="toggleCart()"></div>
 
     <script>
+        // Появление при загрузке
         window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => { document.getElementById('wrapper').classList.add('is-visible'); }, 150);
+            setTimeout(() => { document.getElementById('wrapper').classList.add('is-visible'); }, 100);
         });
 
         function toggleCart() {
