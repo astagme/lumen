@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LUMEN SHIFT | Future of Coffee</title>
+    <title>LUMEN SHIFT | High-Velocity Specialty Coffee</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-black: #000000;
+            --bg-black: #0F0F0F;
             --shift-lime: #CCFF00;
             --text-white: #FFFFFF;
-            --font-display: 'Archivo Black', sans-serif;
+            --text-gray: #888888;
             --font-main: 'Inter', sans-serif;
+            --font-display: 'Archivo Black', sans-serif;
         }
 
         /* ЗАЩИТА ОТ КОПИРОВАНИЯ */
-        * { 
-            margin: 0; padding: 0; box-sizing: border-box; 
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
             -webkit-user-select: none; -moz-user-select: none;
             -ms-user-select: none; user-select: none;
         }
@@ -27,88 +28,154 @@
             background-color: var(--bg-black);
             color: var(--text-white);
             font-family: var(--font-main);
-            overflow: hidden;
+            overflow: hidden; /* Чтобы главная не скроллилась */
         }
 
-        /* ПЛАВНОЕ ПОЯВЛЕНИЕ (как в твоем оригинале) */
+        /* АНИМАЦИЯ ПОЯВЛЕНИЯ */
         .fade-wrapper { 
             opacity: 0; 
-            transform: translateY(30px);
+            transform: translateY(20px);
             filter: blur(10px);
-            transition: opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1), 
-                        transform 1.6s cubic-bezier(0.16, 1, 0.3, 1), 
-                        filter 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 1.5s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 1.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .fade-wrapper.is-visible {
             opacity: 1; transform: translateY(0); filter: blur(0);
         }
 
-        /* ФОНОВАЯ КАРТИНКА - ПУТЬ ИСПРАВЛЕН */
-        .hero-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8)), 
-                        url('images/homepage.png') center/cover no-repeat;
-            z-index: -1;
-        }
-
         nav {
-            padding: 1.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 1.5rem 5%;
             position: fixed;
             width: 100%;
-            top: 0;
             z-index: 100;
+            background: rgba(15, 15, 15, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #222;
         }
 
-        .logo { font-family: var(--font-display); text-decoration: none; color: white; font-size: 1.1rem; text-transform: uppercase; }
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: white;
+        }
+
         .logo span { color: var(--shift-lime); }
 
+        .nav-right { display: flex; align-items: center; gap: 2rem; }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-white);
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-left: 2rem;
+            transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--shift-lime); }
+
+        /* Кнопка корзины в стиле Tech */
         .cart-trigger {
             background: var(--shift-lime);
-            color: black;
-            padding: 8px 18px;
+            color: #000;
+            padding: 8px 15px;
             font-family: var(--font-display);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             cursor: pointer;
-            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+            text-transform: uppercase;
+            transition: 0.3s;
         }
 
-        .hero-content {
+        .hero {
             height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 8%;
+            align-items: center;
+            padding: 0 5%;
+            background: linear-gradient(90deg, var(--bg-black) 40%, transparent), 
+                        url('images/homepage.png') center/cover no-repeat;
         }
 
-        .hero-content h1 {
+        .hero-content { max-width: 700px; }
+
+        .tagline {
+            color: var(--shift-lime);
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        h1 {
             font-family: var(--font-display);
-            font-size: clamp(3rem, 10vw, 6.5rem);
+            font-size: clamp(3.5rem, 10vw, 6rem);
             line-height: 0.85;
             text-transform: uppercase;
             margin-bottom: 2rem;
         }
 
-        .hero-content h1 span { color: var(--shift-lime); }
-
-        .cta-btn {
-            display: inline-block;
-            padding: 22px 50px;
-            background: var(--shift-lime);
-            color: black;
-            text-decoration: none;
-            font-family: var(--font-display);
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
-            transition: 0.3s;
+        .hero-content p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            max-width: 450px;
         }
 
-        /* КОРЗИНА (Твоя структура) */
+        .btn-shift {
+            background: var(--shift-lime);
+            color: #000;
+            padding: 1.2rem 3rem;
+            text-decoration: none;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            display: inline-block;
+            transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .btn-shift:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(204, 255, 0, 0.3);
+        }
+
+        .status-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #151515;
+            padding: 1.5rem 5%;
+            display: flex;
+            gap: 40px;
+            border-top: 1px solid #222;
+        }
+
+        .status-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .dot {
+            width: 8px; height: 8px;
+            background: var(--shift-lime);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--shift-lime);
+        }
+
+        /* CART PANEL (Твоя структура из меню) */
         .cart-panel {
             position: fixed; right: -400px; top: 0; width: 350px; height: 100%;
             background: #0a0a0a; border-left: 1px solid var(--shift-lime);
@@ -119,32 +186,49 @@
         .close-cart { color: var(--shift-lime); cursor: pointer; text-transform: uppercase; font-size: 0.7rem; font-weight: 800; }
         #cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; z-index: 999; backdrop-filter: blur(5px); }
         #cart-overlay.active { display: block; }
+
+        @media (max-width: 768px) {
+            .hero { background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('images/homepage.png') center/cover; text-align: center; justify-content: center; }
+            .status-bar, .nav-links { display: none; }
+        }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
-    <div class="hero-bg"></div>
+    <nav>
+        <a href="index.html" class="logo">LUMEN<span>SHIFT</span></a>
+        <div class="nav-right">
+            <div class="nav-links">
+                <a href="menu.html">Menu</a>
+                <a href="story.html">Locations</a>
+            </div>
+            <div class="cart-trigger" onclick="toggleCart()">Cart [0]</div>
+        </div>
+    </nav>
 
     <div id="wrapper" class="fade-wrapper">
-        <nav>
-            <a href="index.html" class="logo">LUMEN<span>SHIFT</span></a>
-            <div class="cart-trigger" onclick="toggleCart()">CART [0]</div>
-        </nav>
+        <header class="hero">
+            <div class="hero-content">
+                <span class="tagline">Speed meets Craft</span>
+                <h1>Don't <br>Wait. <br>Evolve.</h1>
+                <p>Specialty grade beans. Precision roasting. Ready for pickup in under 180 seconds.</p>
+                <a href="menu.html" class="btn-shift">Order for Pickup</a>
+            </div>
 
-        <main class="hero-content">
-            <h1>LUMEN<br><span>SHIFT</span></h1>
-            <a href="menu.html" class="cta-btn">Initiate Order</a>
-        </main>
+            <div class="status-bar">
+                <div class="status-item"><div class="dot"></div> Shoreditch: LIVE</div>
+                <div class="status-item"><div class="dot"></div> Soho: LIVE</div>
+                <div class="status-item" style="opacity: 0.5;"><div class="dot" style="background:#444; box-shadow:none;"></div> Peckham: SOON</div>
+            </div>
+        </header>
     </div>
 
     <div id="side-cart" class="cart-panel">
-        <div style="display:flex; justify-content: space-between; align-items:center; margin-bottom: 40px;">
-            <h2 style="font-family: var(--font-display); font-size: 1.2rem; text-transform: uppercase;">Active Protocol</h2>
+        <div style="display:flex; justify-content: space-between; align-items:center;">
+            <h2 style="font-family: var(--font-display); font-size: 1.1rem; text-transform: uppercase;">Protocol</h2>
             <span class="close-cart" onclick="toggleCart()">Close —</span>
         </div>
-        <div id="cart-items" style="color: #444; text-align: center; margin-top: 50px; font-size: 0.8rem; text-transform: uppercase;">
-            Protocol is empty.
-        </div>
+        <p style="margin-top: 50px; text-align: center; color: #444; font-size: 0.8rem;">PROTOCOL EMPTY</p>
     </div>
     <div id="cart-overlay" onclick="toggleCart()"></div>
 
