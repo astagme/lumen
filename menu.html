@@ -18,10 +18,7 @@
             --font-main: 'Inter', sans-serif;
         }
 
-        * { 
-            margin: 0; padding: 0; box-sizing: border-box; 
-            -webkit-user-select: none; -moz-user-select: none; user-select: none;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-user-select: none; user-select: none; }
 
         body {
             background-color: var(--bg-black);
@@ -33,11 +30,10 @@
 
         .fade-wrapper { 
             opacity: 0; transform: translateY(30px); filter: blur(10px);
-            transition: all 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .fade-wrapper.is-visible { opacity: 1; transform: translateY(0); filter: blur(0); }
 
-        /* NAV REPAIR */
         nav {
             padding: 1.5rem 5%;
             display: flex; justify-content: space-between; align-items: center;
@@ -50,11 +46,7 @@
         .logo span { color: var(--shift-lime); }
 
         .nav-right { display: flex; align-items: center; gap: 2rem; }
-        
-        .nav-links a {
-            text-decoration: none; color: var(--text-white); font-weight: 700;
-            font-size: 0.8rem; text-transform: uppercase; margin-left: 2rem; transition: 0.3s;
-        }
+        .nav-links a { text-decoration: none; color: var(--text-white); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; margin-left: 2rem; transition: 0.3s; }
         .nav-links a:hover { color: var(--shift-lime); }
 
         .cart-trigger {
@@ -63,41 +55,42 @@
             clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
             transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .cart-bump { transform: scale(1.2); box-shadow: 0 0 20px var(--shift-lime); }
+        .cart-bump { transform: scale(1.1); box-shadow: 0 0 20px var(--shift-lime); }
 
-        /* MENU CONTENT */
         .menu-hero {
-            height: 350px;
-            background: linear-gradient(to top, var(--bg-black), transparent), 
-                        url('images/menu.png') center/cover no-repeat;
-            display: flex; align-items: center; padding: 0 5%;
-            filter: grayscale(100%) contrast(115%); border-bottom: 1px solid #111;
+            height: 300px;
+            background: linear-gradient(to top, var(--bg-black), transparent), url('images/menu.png') center/cover no-repeat;
+            display: flex; align-items: center; padding: 0 5%; filter: grayscale(100%);
         }
-        .menu-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); text-transform: uppercase; line-height: 0.9; }
+        .menu-hero h1 { font-family: var(--font-display); font-size: 3.5rem; text-transform: uppercase; line-height: 0.9; }
 
-        .menu-container { padding: 40px 5% 200px; max-width: 1200px; margin: 0 auto; }
+        .menu-container { padding: 40px 5% 150px; max-width: 1200px; margin: 0 auto; }
         .category-header { border-left: 4px solid var(--shift-lime); padding-left: 15px; margin: 60px 0 30px; }
         .category-header h2 { font-family: var(--font-display); text-transform: uppercase; font-size: 1.4rem; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
 
         .menu-card {
-            background: var(--card-bg); padding: 30px; border: 1px solid #111;
-            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column; height: 100%;
+            background: var(--card-bg); padding: 25px; border: 1px solid #111;
+            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column;
         }
-        .img-container { width: 100%; height: 280px; display: flex; align-items: flex-end; justify-content: center; padding: 25px; margin-bottom: 1.5rem; }
+        .img-container { width: 100%; height: 220px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
         .menu-card img { max-width: 100%; max-height: 100%; object-fit: contain; mix-blend-mode: screen; transition: 0.5s; }
-        .menu-card:hover { border-color: var(--shift-lime); background: #111; }
-        .menu-card:hover img { transform: scale(1.1) translateY(-10px); }
+        .menu-card:hover { border-color: var(--shift-lime); background: #0c0c0c; }
+        .menu-card:hover img { transform: scale(1.05); }
 
-        .price { font-weight: 800; color: var(--shift-lime); font-size: 1.2rem; }
-        .add-btn { 
-            width: 38px; height: 38px; background: #1a1a1a; color: white; border: none;
-            display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; transition: 0.3s; 
-        }
-        .add-btn.success { background: var(--shift-lime) !important; color: black !important; transform: scale(0.9); }
+        .tag { font-size: 0.55rem; background: var(--shift-lime); color: #000; padding: 2px 8px; font-weight: 800; display: inline-block; margin-bottom: 10px; text-transform: uppercase; }
+        .menu-card h3 { font-family: var(--font-display); font-size: 0.9rem; margin-bottom: 8px; text-transform: uppercase; }
+        .menu-card p { color: var(--text-gray); font-size: 0.8rem; margin-bottom: 20px; flex-grow: 1; }
         
-        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #222; padding-top: 20px; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #1a1a1a; padding-top: 15px; }
+        .price { font-weight: 800; color: var(--shift-lime); }
+        
+        .add-btn { 
+            width: 35px; height: 35px; background: #1a1a1a; color: white; border: none;
+            display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; 
+        }
+        .add-btn.success { background: var(--shift-lime) !important; color: black !important; }
 
         /* CART PANEL */
         .cart-panel {
@@ -106,17 +99,10 @@
             z-index: 1000; transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); padding: 40px 25px; display: flex; flex-direction: column;
         }
         .cart-panel.active { right: 0; }
-        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #111; }
-        .checkout-btn { width: 100%; background: var(--shift-lime); border: none; padding: 18px; font-family: var(--font-display); cursor: pointer; margin-top: 25px; text-transform: uppercase; }
-        #cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; z-index: 999; backdrop-filter: blur(5px); }
+        .cart-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #111; font-size: 0.9rem; }
+        .checkout-btn { width: 100%; background: var(--shift-lime); border: none; padding: 18px; font-family: var(--font-display); cursor: pointer; margin-top: 25px; }
+        #cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; z-index: 999; backdrop-filter: blur(5px); }
         #cart-overlay.active { display: block; }
-
-        .customizer {
-            background: var(--shift-lime); color: black; padding: 18px 5%;
-            position: fixed; bottom: 0; width: 100%; display: flex; justify-content: center; gap: 40px; font-weight: 800; text-transform: uppercase; font-size: 0.75rem; z-index: 90;
-        }
-
-        @media (max-width: 768px) { .nav-links { display: none; } }
     </style>
 </head>
 <body oncontextmenu="return false;">
@@ -136,7 +122,7 @@
         </nav>
 
         <header class="menu-hero">
-            <h1>Protocol<br>Menu</h1>
+            <h1>Protocol Menu</h1>
         </header>
 
         <main class="menu-container">
@@ -144,36 +130,91 @@
                 <div class="category-header"><h2>Core Brews</h2></div>
                 <div class="grid">
                     <div class="menu-card" data-name="Shift Espresso" data-price="3.20">
-                        <div class="img-container"><img src="menu/shiftespresso.png" alt="Espresso"></div>
-                        <h3>Shift Espresso</h3>
-                        <p>High-clarity double extraction blend.</p>
+                        <div class="img-container"><img src="menu/shiftespresso.png"></div>
+                        <h3>Shift Espresso</h3><p>High-clarity double extraction blend.</p>
                         <div class="card-footer"><span class="price">£3.20</span><button class="add-btn">+</button></div>
                     </div>
                     <div class="menu-card" data-name="Cyber Flat White" data-price="3.95">
-                        <div class="img-container"><img src="menu/flatwhite.png" alt="Flat White"></div>
-                        <h3>Cyber Flat White</h3>
-                        <p>Precision-steamed micro-foam texture.</p>
+                        <div class="img-container"><img src="menu/flatwhite.png"></div>
+                        <h3>Cyber Flat White</h3><p>Precision-steamed micro-foam texture.</p>
                         <div class="card-footer"><span class="price">£3.95</span><button class="add-btn">+</button></div>
+                    </div>
+                    <div class="menu-card" data-name="System Black" data-price="3.50">
+                        <div class="img-container"><img src="menu/systemblack.png"></div>
+                        <h3>System Black</h3><p>Purified water lengthened espresso.</p>
+                        <div class="card-footer"><span class="price">£3.50</span><button class="add-btn">+</button></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="category-header"><h2>Signatures</h2></div>
+                <div class="grid">
+                    <div class="menu-card" data-name="LUMEN Glow Latte" data-price="4.75">
+                        <div class="img-container"><img src="menu/latte.png"></div>
+                        <span class="tag">Bestseller</span><h3>LUMEN Glow Latte</h3><p>Smoked vanilla and honey infusion.</p>
+                        <div class="card-footer"><span class="price">£4.75</span><button class="add-btn">+</button></div>
+                    </div>
+                    <div class="menu-card" data-name="Nitro Mint Fuel" data-price="5.20">
+                        <div class="img-container"><img src="menu/mintfuel.png"></div>
+                        <span class="tag">Iced Only</span><h3>Nitro Mint Fuel</h3><p>Fresh mint nitro cold brew energy.</p>
+                        <div class="card-footer"><span class="price">£5.20</span><button class="add-btn">+</button></div>
+                    </div>
+                    <div class="menu-card" data-name="Tropic Roast" data-price="5.50">
+                        <div class="img-container"><img src="menu/tropic.png"></div>
+                        <span class="tag">Limited</span><h3>Tropic Roast</h3><p>Flash-chilled coconut water brew.</p>
+                        <div class="card-footer"><span class="price">£5.50</span><button class="add-btn">+</button></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="category-header"><h2>Fuel Station</h2></div>
+                <div class="grid">
+                    <div class="menu-card" data-name="Shift Bagel" data-price="7.50">
+                        <div class="img-container"><img src="menu/shiftbagel.png"></div>
+                        <h3>Shift Bagel</h3><p>Smoked salmon & chive cream cheese.</p>
+                        <div class="card-footer"><span class="price">£7.50</span><button class="add-btn">+</button></div>
+                    </div>
+                    <div class="menu-card" data-name="Avocado Protocol" data-price="8.20">
+                        <div class="img-container"><img src="menu/protocol.png"></div>
+                        <h3>Avocado Protocol</h3><p>Toasted rye with black sesame.</p>
+                        <div class="card-footer"><span class="price">£8.20</span><button class="add-btn">+</button></div>
+                    </div>
+                    <div class="menu-card" data-name="Matcha Energy Bar" data-price="3.50">
+                        <div class="img-container"><img src="menu/matchaenergy.png"></div>
+                        <h3>Matcha Energy Bar</h3><p>Raw vegan slow-release caffeine fuel.</p>
+                        <div class="card-footer"><span class="price">£3.50</span><button class="add-btn">+</button></div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="category-header"><h2>Hardware</h2></div>
+                <div class="grid">
+                    <div class="menu-card" data-name="Core Blend (250g)" data-price="12.00">
+                        <div class="img-container"><img src="menu/coreblend.png"></div>
+                        <h3>Core Blend (250g)</h3><p>Weekly roasted chocolate & cherry notes.</p>
+                        <div class="card-footer"><span class="price">£12.00</span><button class="add-btn">+</button></div>
+                    </div>
+                    <div class="menu-card" data-name="SHIFT Tumbler" data-price="24.00">
+                        <div class="img-container"><img src="menu/tumbler.png"></div>
+                        <h3>SHIFT Tumbler</h3><p>Insulated matte black steel vessel.</p>
+                        <div class="card-footer"><span class="price">£24.00</span><button class="add-btn">+</button></div>
                     </div>
                 </div>
             </section>
         </main>
-
-        <div class="customizer">
-            <span>Neural Network: Online</span>
-            <span>Pickup: 2 Mins</span>
-            <span>Shift Status: Active</span>
-        </div>
     </div>
 
     <div id="side-cart" class="cart-panel">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:40px;">
-            <h2 style="font-family: var(--font-display); font-size: 1.1rem; text-transform: uppercase;">Active Protocol</h2>
-            <span style="color: var(--shift-lime); cursor:pointer; font-size:0.7rem; font-weight:800;" onclick="toggleCart()">CLOSE —</span>
+            <h2 style="font-family: var(--font-display); font-size: 1rem;">ACTIVE PROTOCOL</h2>
+            <span style="color:var(--shift-lime); cursor:pointer; font-size:0.7rem; font-weight:800;" onclick="toggleCart()">CLOSE —</span>
         </div>
         <div id="cart-items"></div>
         <div style="border-top: 1px solid var(--shift-lime); padding-top: 25px; margin-top: auto;">
-            <div style="display:flex; justify-content:space-between; font-family: var(--font-display);">
+            <div style="display:flex; justify-content:space-between; font-family:var(--font-display);">
                 <span>TOTAL</span><span>£<span id="cart-total">0.00</span></span>
             </div>
             <button class="checkout-btn" onclick="alert('Order Executed!')">EXECUTE ORDER</button>
@@ -182,10 +223,7 @@
     <div id="cart-overlay" onclick="toggleCart()"></div>
 
     <script>
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => { document.getElementById('wrapper').classList.add('is-visible'); }, 100);
-        });
-
+        window.addEventListener('DOMContentLoaded', () => { setTimeout(() => { document.getElementById('wrapper').classList.add('is-visible'); }, 100); });
         let cart = [];
         const cartBtn = document.getElementById('cart-btn');
 
@@ -197,16 +235,10 @@
         document.querySelectorAll('.add-btn').forEach(button => {
             button.addEventListener('click', () => {
                 const card = button.closest('.menu-card');
-                const name = card.getAttribute('data-name');
-                const price = parseFloat(card.getAttribute('data-price'));
-                cart.push({name, price});
-                
-                button.classList.add('success');
-                button.innerText = '✓';
+                cart.push({name: card.getAttribute('data-name'), price: parseFloat(card.getAttribute('data-price'))});
+                button.classList.add('success'); button.innerText = '✓';
                 cartBtn.classList.add('cart-bump');
-
                 updateCartUI();
-
                 setTimeout(() => { button.classList.remove('success'); button.innerText = '+'; }, 600);
                 setTimeout(() => { cartBtn.classList.remove('cart-bump'); }, 300);
             });
@@ -214,31 +246,19 @@
 
         function updateCartUI() {
             const container = document.getElementById('cart-items');
-            const totalLabel = document.getElementById('cart-total');
-            const countLabel = document.getElementById('cart-count');
-            container.innerHTML = '';
-            let total = 0;
-            
-            if (cart.length === 0) {
-                container.innerHTML = '<p style="text-align:center; color:#444; margin-top:50px; font-size:0.8rem;">PROTOCOL EMPTY</p>';
-            }
-
+            container.innerHTML = ''; let total = 0;
+            if (cart.length === 0) container.innerHTML = '<p style="text-align:center; color:#444; margin-top:50px;">EMPTY</p>';
             cart.forEach((item, index) => {
-                const div = document.createElement('div');
-                div.className = 'cart-item';
+                const div = document.createElement('div'); div.className = 'cart-item';
                 div.innerHTML = `<div>${item.name}<br><small style="color:var(--shift-lime)">£${item.price.toFixed(2)}</small></div>
-                                 <span style="color:#f33; cursor:pointer; font-weight:800;" onclick="removeFromCart(${index})">✕</span>`;
-                container.appendChild(div);
-                total += item.price;
+                                 <span style="color:#f33; cursor:pointer;" onclick="removeFromCart(${index})">✕</span>`;
+                container.appendChild(div); total += item.price;
             });
-            totalLabel.innerText = total.toFixed(2);
-            countLabel.innerText = cart.length;
+            document.getElementById('cart-total').innerText = total.toFixed(2);
+            document.getElementById('cart-count').innerText = cart.length;
         }
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartUI();
-        }
+        function removeFromCart(index) { cart.splice(index, 1); updateCartUI(); }
     </script>
 </body>
 </html>
