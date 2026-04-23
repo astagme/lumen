@@ -18,7 +18,7 @@
             --font-main: 'Inter', sans-serif;
         }
 
-        /* 1. НОВАЯ ЛОГИКА АНИМАЦИИ */
+        /* ПЛАВНОЕ ПОЯВЛЕНИЕ */
         .fade-wrapper { 
             opacity: 0; 
             transform: translateY(30px);
@@ -28,7 +28,6 @@
                         filter 1.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Этот класс включит плавность после загрузки */
         .fade-wrapper.is-visible {
             opacity: 1;
             transform: translateY(0);
@@ -90,7 +89,7 @@
             line-height: 0.9;
         }
 
-        .menu-container { padding: 40px 5% 180px; max-width: 1200px; margin: 0 auto; }
+        .menu-container { padding: 40px 5% 200px; max-width: 1200px; margin: 0 auto; }
         .category-header { border-left: 4px solid var(--shift-lime); padding-left: 15px; margin: 60px 0 30px; }
         .category-header h2 { font-family: var(--font-display); text-transform: uppercase; font-size: 1.4rem; }
 
@@ -157,7 +156,7 @@
             z-index: 90;
         }
 
-        /* CART PANEL */
+        /* CART UI */
         .cart-panel {
             position: fixed; right: -400px; top: 0; width: 350px; height: 100%;
             background: #0a0a0a; border-left: 1px solid var(--shift-lime);
@@ -169,7 +168,8 @@
         .close-cart { color: var(--shift-lime); cursor: pointer; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
         #cart-items { flex-grow: 1; overflow-y: auto; }
         .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px solid #111; }
-        .remove-btn { color: #ff3333; cursor: pointer; font-weight: 800; margin-left: 15px; }
+        .remove-btn { color: #ff3333; cursor: pointer; font-weight: 800; transition: 0.3s; }
+        .remove-btn:hover { color: white; }
         .cart-footer-panel { border-top: 1px solid var(--shift-lime); padding-top: 25px; }
         .total { display: flex; justify-content: space-between; font-family: var(--font-display); font-size: 1.1rem; }
         .checkout-btn { width: 100%; background: var(--shift-lime); border: none; padding: 18px; font-family: var(--font-display); cursor: pointer; margin-top: 25px; }
@@ -192,6 +192,7 @@
         </header>
 
         <main class="menu-container">
+            
             <section>
                 <div class="category-header"><h2>Core Brews</h2></div>
                 <div class="grid">
@@ -233,6 +234,13 @@
                         <p>Fresh mint nitro cold brew energy.</p>
                         <div class="card-footer"><span class="price">£5.20</span><button class="add-btn">+</button></div>
                     </div>
+                    <div class="menu-card" data-name="Tropic Roast" data-price="5.50">
+                        <div class="img-container"><img src="menu/tropic.png" alt="Tropic Roast"></div>
+                        <span class="tag">Limited</span>
+                        <h3>Tropic Roast</h3>
+                        <p>Flash-chilled coconut water brew.</p>
+                        <div class="card-footer"><span class="price">£5.50</span><button class="add-btn">+</button></div>
+                    </div>
                 </div>
             </section>
 
@@ -245,6 +253,12 @@
                         <p>Smoked salmon & chive cream cheese.</p>
                         <div class="card-footer"><span class="price">£7.50</span><button class="add-btn">+</button></div>
                     </div>
+                    <div class="menu-card" data-name="Matcha Energy Bar" data-price="3.50">
+                        <div class="img-container"><img src="menu/matchaenergy.png" alt="Matcha"></div>
+                        <h3>Matcha Energy Bar</h3>
+                        <p>Raw vegan slow-release caffeine fuel.</p>
+                        <div class="card-footer"><span class="price">£3.50</span><button class="add-btn">+</button></div>
+                    </div>
                     <div class="menu-card" data-name="Avocado Protocol" data-price="8.20">
                         <div class="img-container"><img src="menu/protocol.png" alt="Avocado"></div>
                         <h3>Avocado Protocol</h3>
@@ -253,6 +267,25 @@
                     </div>
                 </div>
             </section>
+
+            <section>
+                <div class="category-header"><h2>Hardware</h2></div>
+                <div class="grid">
+                    <div class="menu-card" data-name="Core Blend (250g)" data-price="12.00">
+                        <div class="img-container"><img src="menu/coreblend.png" alt="Beans"></div>
+                        <h3>Core Blend (250g)</h3>
+                        <p>Weekly roasted chocolate & cherry notes.</p>
+                        <div class="card-footer"><span class="price">£12.00</span><button class="add-btn">+</button></div>
+                    </div>
+                    <div class="menu-card" data-name="SHIFT Tumbler" data-price="24.00">
+                        <div class="img-container"><img src="menu/tumbler.png" alt="Tumbler"></div>
+                        <h3>SHIFT Tumbler</h3>
+                        <p>Insulated matte black steel vessel.</p>
+                        <div class="card-footer"><span class="price">£24.00</span><button class="add-btn">+</button></div>
+                    </div>
+                </div>
+            </section>
+
         </main>
 
         <div class="customizer">
@@ -267,17 +300,14 @@
         <div id="cart-items"></div>
         <div class="cart-footer-panel">
             <div class="total"><span>TOTAL</span><span>£<span id="cart-total">0.00</span></span></div>
-            <button class="checkout-btn">EXECUTE ORDER</button>
+            <button class="checkout-btn" onclick="alert('Order Executed!')">EXECUTE ORDER</button>
         </div>
     </div>
     <div id="cart-overlay" onclick="toggleCart()"></div>
 
     <script>
-        // 2. СКРИПТ ДЛЯ ГАРАНТИРОВАННО ПЛАВНОГО ПОЯВЛЕНИЯ
         window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                document.getElementById('wrapper').classList.add('is-visible');
-            }, 100); // Небольшая задержка для инициализации
+            setTimeout(() => { document.getElementById('wrapper').classList.add('is-visible'); }, 100);
         });
 
         let cart = [];
@@ -309,14 +339,10 @@
             const totalLabel = document.getElementById('cart-total');
             cartContainer.innerHTML = '';
             let currentTotal = 0;
-            
             cart.forEach((item, index) => {
                 const div = document.createElement('div');
                 div.className = 'cart-item';
-                div.innerHTML = `
-                    <div><span>${item.name}</span><br><span style="color: var(--shift-lime); font-size: 0.8rem">£${item.price.toFixed(2)}</span></div>
-                    <span class="remove-btn" onclick="removeFromCart(${index})">✕</span>
-                `;
+                div.innerHTML = `<div><span>${item.name}</span><br><span style="color: var(--shift-lime); font-size: 0.8rem">£${item.price.toFixed(2)}</span></div><span class="remove-btn" onclick="removeFromCart(${index})">✕</span>`;
                 cartContainer.appendChild(div);
                 currentTotal += item.price;
             });
