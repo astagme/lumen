@@ -28,21 +28,31 @@
             background-color: var(--bg-black);
             color: var(--text-white);
             font-family: var(--font-main);
-            overflow-x: hidden;
+            overflow: hidden; /* Чтобы не было прокрутки на главной */
         }
 
         /* ПЛАВНОЕ ПОЯВЛЕНИЕ */
         .fade-wrapper { 
             opacity: 0; 
-            transform: translateY(30px);
-            filter: blur(10px);
-            transition: opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1), 
-                        transform 1.6s cubic-bezier(0.16, 1, 0.3, 1), 
-                        filter 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: scale(1.05);
+            filter: blur(20px);
+            transition: opacity 2s cubic-bezier(0.16, 1, 0.3, 1), 
+                        transform 2s cubic-bezier(0.16, 1, 0.3, 1), 
+                        filter 2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .fade-wrapper.is-visible {
-            opacity: 1; transform: translateY(0); filter: blur(0);
+            opacity: 1; transform: scale(1); filter: blur(0);
+        }
+
+        /* BACKGROUND IMAGE SECTION */
+        .hero-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,0.8)), 
+                        url('images/main.png') center/cover no-repeat;
+            z-index: -1;
+            filter: grayscale(20%) contrast(110%);
         }
 
         nav {
@@ -50,20 +60,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #111;
             position: fixed;
             width: 100%;
             top: 0;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(15px);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
             z-index: 100;
         }
 
-        .logo { font-family: var(--font-display); text-decoration: none; color: white; font-size: 1.1rem; text-transform: uppercase; }
+        .logo { font-family: var(--font-display); text-decoration: none; color: white; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; }
         .logo span { color: var(--shift-lime); }
-
-        .nav-links a { color: white; text-decoration: none; margin-right: 30px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; transition: 0.3s; }
-        .nav-links a:hover { color: var(--shift-lime); }
 
         .cart-trigger {
             background: var(--shift-lime);
@@ -73,49 +78,65 @@
             font-size: 0.75rem;
             cursor: pointer;
             clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+            transition: 0.3s;
         }
+        .cart-trigger:hover { transform: scale(1.05); background: white; }
 
-        /* HERO SECTION */
-        .hero {
+        .hero-content {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle at center, #111 0%, #000 100%);
-            padding: 0 5%;
+            padding: 0 8%;
+            max-width: 900px;
         }
 
-        .hero h1 {
+        .hero-content h1 {
             font-family: var(--font-display);
-            font-size: clamp(3rem, 12vw, 8rem);
-            line-height: 0.85;
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            line-height: 0.9;
             text-transform: uppercase;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .hero h1 span {
-            display: block;
-            color: transparent;
-            -webkit-text-stroke: 1px var(--shift-lime);
+        .hero-content h1 span {
+            color: var(--shift-lime);
         }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin-bottom: 2.5rem;
+            color: rgba(255,255,255,0.8);
+            border-left: 2px solid var(--shift-lime);
+            padding-left: 20px;
+        }
+
+        .cta-group { display: flex; gap: 20px; }
 
         .cta-btn {
-            padding: 20px 40px;
+            padding: 20px 45px;
             background: var(--shift-lime);
             color: black;
             text-decoration: none;
             font-family: var(--font-display);
             text-transform: uppercase;
-            font-size: 1rem;
-            clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
+            font-size: 0.9rem;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
             transition: 0.4s;
         }
 
-        .cta-btn:hover { transform: scale(1.05); filter: drop-shadow(0 0 15px var(--shift-lime)); }
+        .cta-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+        }
 
-        /* CART UI (Такая же как в меню) */
+        .cta-btn:hover { transform: translateY(-5px); filter: drop-shadow(0 0 15px var(--shift-lime)); }
+
+        /* CART PANEL */
         .cart-panel {
             position: fixed; right: -400px; top: 0; width: 350px; height: 100%;
             background: #0a0a0a; border-left: 1px solid var(--shift-lime);
@@ -124,75 +145,52 @@
         }
         .cart-panel.active { right: 0; }
         .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
-        .cart-header h2 { font-family: var(--font-display); text-transform: uppercase; font-size: 1.2rem; }
         .close-cart { color: var(--shift-lime); cursor: pointer; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
-        #cart-items { flex-grow: 1; overflow-y: auto; color: var(--text-gray); font-size: 0.9rem; text-align: center; padding-top: 50px; }
-        .cart-footer-panel { border-top: 1px solid var(--shift-lime); padding-top: 25px; }
-        .total { display: flex; justify-content: space-between; font-family: var(--font-display); font-size: 1.1rem; }
-        .checkout-btn { width: 100%; background: var(--shift-lime); border: none; padding: 18px; font-family: var(--font-display); cursor: pointer; margin-top: 25px; }
+        #cart-items { flex-grow: 1; display: flex; align-items: center; justify-content: center; color: var(--text-gray); text-align: center; font-size: 0.85rem; }
+        .total { display: flex; justify-content: space-between; font-family: var(--font-display); border-top: 1px solid #222; padding-top: 20px; }
+        
         #cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: none; z-index: 999; backdrop-filter: blur(5px); }
         #cart-overlay.active { display: block; }
-
-        .footer-info {
-            position: absolute; bottom: 30px; width: 100%;
-            display: flex; justify-content: center; gap: 40px;
-            font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: var(--text-gray);
-        }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
+    <div class="hero-bg"></div>
+
     <div id="wrapper" class="fade-wrapper">
         <nav>
             <a href="index.html" class="logo">LUMEN<span>SHIFT</span></a>
-            <div class="nav-links">
-                <a href="menu.html">Menu</a>
-                <a href="#">Locations</a>
-            </div>
             <div class="cart-trigger" onclick="toggleCart()">
                 CART [0]
             </div>
         </nav>
 
-        <section class="hero">
-            <h1>Shift Your<span>Reality</span></h1>
-            <a href="menu.html" class="cta-btn">Access Menu</a>
+        <main class="hero-content">
+            <h1>LUMEN<br><span>SHIFT</span>_01</h1>
+            <p>Next-generation espresso lab. Precision roasting. Neural aesthetics. Welcome to the future of caffeine.</p>
             
-            <div class="footer-info">
-                <span>London // 2026</span>
-                <span>Open: 07:00 - 22:00</span>
-                <span>Protocol: Active</span>
+            <div class="cta-group">
+                <a href="menu.html" class="cta-btn">Initiate Order</a>
+                <a href="#" class="cta-btn secondary">Locations</a>
             </div>
-        </section>
+        </main>
     </div>
 
     <div id="side-cart" class="cart-panel">
-        <div class="cart-header">
-            <h2>Active Protocol</h2>
-            <span class="close-cart" onclick="toggleCart()">CLOSE —</span>
-        </div>
-        <div id="cart-items">
-            Your protocol is currently empty. <br> Visit the menu to add fuel.
-        </div>
-        <div class="cart-footer-panel">
-            <div class="total">
-                <span>TOTAL</span>
-                <span>£0.00</span>
-            </div>
-            <button class="checkout-btn">EXECUTE ORDER</button>
+        <div class="cart-header"><h2>Active Protocol</h2><span class="close-cart" onclick="toggleCart()">CLOSE —</span></div>
+        <div id="cart-items">Protocol empty. Add fuel from the menu.</div>
+        <div class="cart-footer">
+            <div class="total"><span>TOTAL</span><span>£0.00</span></div>
+            <button class="cta-btn" style="width: 100%; margin-top: 20px; border: none; cursor: pointer;">Execute</button>
         </div>
     </div>
     <div id="cart-overlay" onclick="toggleCart()"></div>
 
     <script>
-        // Плавная загрузка при открытии
         window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                document.getElementById('wrapper').classList.add('is-visible');
-            }, 100);
+            setTimeout(() => { document.getElementById('wrapper').classList.add('is-visible'); }, 150);
         });
 
-        // Логика корзины
         function toggleCart() {
             document.getElementById('side-cart').classList.toggle('active');
             document.getElementById('cart-overlay').classList.toggle('active');
