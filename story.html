@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locations | LUMEN SHIFT</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-black: #0F0F0F;
+            --shift-lime: #CCFF00;
+            --text-white: #FFFFFF;
+            --text-gray: #888888;
+            --card-bg: #151515;
+            --font-main: 'Inter', sans-serif;
+            --font-display: 'Archivo Black', sans-serif;
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            -webkit-user-select: none; -moz-user-select: none; user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-black);
+            color: var(--text-white);
+            font-family: var(--font-main);
+            line-height: 1.6;
+        }
+
+        /* ПЛАВНОЕ ПОЯВЛЕНИЕ */
+        .fade-wrapper { 
+            opacity: 0; transform: translateY(20px); filter: blur(10px);
+            transition: all 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .fade-wrapper.is-visible { opacity: 1; transform: translateY(0); filter: blur(0); }
+
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.5rem 5%; position: sticky; top: 0; z-index: 100;
+            background: rgba(15, 15, 15, 0.9); backdrop-filter: blur(10px);
+            border-bottom: 1px solid #222;
+        }
+
+        .logo { font-family: var(--font-display); text-decoration: none; color: white; text-transform: uppercase; font-size: 1.2rem; }
+        .logo span { color: var(--shift-lime); }
+
+        .nav-links a {
+            text-decoration: none; color: var(--text-white); font-weight: 700;
+            font-size: 0.8rem; text-transform: uppercase; margin-left: 2rem; transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--shift-lime); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 80px 5%; }
+
+        h1 { font-family: var(--font-display); font-size: 3rem; text-transform: uppercase; margin-bottom: 3rem; border-left: 5px solid var(--shift-lime); padding-left: 20px; }
+
+        /* LOCATIONS GRID */
+        .locations-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 100px; }
+        
+        .location-card {
+            background: var(--card-bg); padding: 40px; border: 1px solid #222;
+            transition: 0.4s; position: relative; overflow: hidden;
+        }
+        .location-card:hover { border-color: var(--shift-lime); transform: translateY(-5px); }
+        .location-card h3 { font-family: var(--font-display); text-transform: uppercase; margin-bottom: 15px; color: var(--shift-lime); }
+        .location-card p { color: var(--text-gray); font-size: 0.9rem; margin-bottom: 5px; }
+        .status-badge { font-size: 0.6rem; font-weight: 800; text-transform: uppercase; background: #222; padding: 4px 10px; display: inline-block; margin-top: 15px; }
+        .status-badge.active { background: var(--shift-lime); color: black; }
+
+        /* FEEDBACK FORM */
+        .feedback-section { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; background: #111; padding: 60px; border: 1px solid #222; }
+        
+        .form-info h2 { font-family: var(--font-display); text-transform: uppercase; margin-bottom: 20px; }
+        .form-info p { color: var(--text-gray); margin-bottom: 20px; }
+
+        input, textarea {
+            width: 100%; background: #0a0a0a; border: 1px solid #333;
+            padding: 15px; color: white; font-family: var(--font-main);
+            margin-bottom: 20px; outline: none; transition: 0.3s;
+        }
+        input:focus, textarea:focus { border-color: var(--shift-lime); }
+
+        .submit-btn {
+            background: var(--shift-lime); color: black; border: none;
+            padding: 15px 40px; font-family: var(--font-display);
+            text-transform: uppercase; cursor: pointer; transition: 0.3s; width: 100%;
+        }
+        .submit-btn:hover { letter-spacing: 2px; }
+
+        @media (max-width: 768px) {
+            .feedback-section { grid-template-columns: 1fr; padding: 30px; }
+            h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body oncontextmenu="return false;">
+
+    <nav>
+        <a href="index.html" class="logo">LUMEN<span>SHIFT</span></a>
+        <div class="nav-links">
+            <a href="menu.html">Menu</a>
+            <a href="story.html" style="color: var(--shift-lime)">Locations</a>
+        </div>
+    </nav>
+
+    <div id="wrapper" class="fade-wrapper">
+        <main class="container">
+            <h1>Access points</h1>
+            
+            <div class="locations-grid">
+                <div class="location-card">
+                    <h3>Shoreditch Station</h3>
+                    <p>Unit 4, Holywell Ln</p>
+                    <p>London EC2A 3ET</p>
+                    <div class="status-badge active">Open Now</div>
+                </div>
+                <div class="location-card">
+                    <h3>Soho Central</h3>
+                    <p>21 Moor St, Soho</p>
+                    <p>London W1D 5AP</p>
+                    <div class="status-badge active">Open Now</div>
+                </div>
+                <div class="location-card" style="opacity: 0.6;">
+                    <h3>Peckham Terminal</h3>
+                    <p>133 Rye Ln</p>
+                    <p>London SE15 4ST</p>
+                    <div class="status-badge">Opening June 2026</div>
+                </div>
+            </div>
+
+            <section class="feedback-section">
+                <div class="form-info">
+                    <h2>Terminal Support</h2>
+                    <p>Столкнулись с багом в системе или хотите предложить апгрейд? Напишите нам.</p>
+                    <p style="font-size: 0.8rem; color: var(--shift-lime);">Response time: < 12h</p>
+                </div>
+                <form id="contact-form" onsubmit="event.preventDefault(); alert('Message Sent to Neural Network');">
+                    <input type="text" placeholder="ID / NAME" required>
+                    <input type="email" placeholder="EMAIL ADDRESS" required>
+                    <textarea rows="4" placeholder="TRANSMISSION CONTENT" required></textarea>
+                    <button type="submit" class="submit-btn">Send Transmission</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => { document.getElementById('wrapper').classList.add('is-visible'); }, 100);
+        });
+    </script>
+</body>
+</html>
