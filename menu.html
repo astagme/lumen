@@ -4,143 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menu | LUMEN SHIFT</title>
-    
     <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
-
     <style>
         :root {
-            --bg-black: #0F0F0F;
+            --bg-black: #000000; /* Чистый черный, чтобы совпало с картинками */
             --shift-lime: #CCFF00;
             --text-white: #FFFFFF;
             --text-gray: #888888;
-            --card-bg: #151515;
+            --card-bg: #0a0a0a;
             --font-display: 'Archivo Black', sans-serif;
             --font-main: 'Inter', sans-serif;
         }
 
-        /* АНИМАЦИЯ ПЛАВНОГО ВХОДА */
         @keyframes pageLoad {
-            from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
-            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background-color: var(--bg-black);
             color: var(--text-white);
             font-family: var(--font-main);
-            line-height: 1.6;
-            padding-bottom: 120px;
-            overflow-x: hidden;
+            padding-bottom: 100px;
         }
 
-        .fade-wrapper {
-            animation: pageLoad 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
+        .fade-wrapper { animation: pageLoad 1s ease-out forwards; }
 
-        /* Navigation */
         nav {
             padding: 1.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #222;
-            background: rgba(15, 15, 15, 0.8);
-            backdrop-filter: blur(15px);
+            border-bottom: 1px solid #111;
+            background: rgba(0, 0, 0, 0.9);
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
-        .logo { font-family: var(--font-display); text-decoration: none; color: white; font-size: 1.2rem; text-transform: uppercase; }
+        .logo { font-family: var(--font-display); text-decoration: none; color: white; font-size: 1.1rem; }
         .logo span { color: var(--shift-lime); }
-        .back-link { text-decoration: none; color: var(--shift-lime); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
 
-        /* Hero */
-        .menu-hero {
-            height: 200px;
-            background: linear-gradient(to top, var(--bg-black), transparent), 
-                        url('images/menu.png') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            filter: grayscale(100%) contrast(110%);
-        }
+        .menu-container { padding: 40px 5%; max-width: 1200px; margin: 0 auto; }
+        .category-header { border-left: 3px solid var(--shift-lime); padding-left: 15px; margin: 50px 0 30px; }
+        .category-header h2 { font-family: var(--font-display); text-transform: uppercase; font-size: 1.3rem; }
 
-        .menu-hero h1 { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.5rem); text-transform: uppercase; }
-
-        /* Контейнер меню */
-        .menu-container { padding: 20px 5%; max-width: 1300px; margin: 0 auto; }
-        .category-header { border-left: 4px solid var(--shift-lime); padding-left: 15px; margin: 60px 0 30px; }
-        .category-header h2 { font-family: var(--font-display); text-transform: uppercase; font-size: 1.4rem; letter-spacing: 1px; }
-
-        /* Сетка карточек */
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; 
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
 
         .menu-card {
             background: var(--card-bg);
             padding: 25px;
-            border: 1px solid #222;
+            border: 1px solid #111;
             transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            height: 100%; /* Все карточки одной высоты */
+            height: 100%;
         }
 
-        /* ИСПРАВЛЕНИЕ КАРТИНОК: ОДИНАКОВЫЙ РАЗМЕР */
+        /* КОНТЕЙНЕР ДЛЯ УДАЛЕНИЯ КВАДРАТОВ */
+        .img-container {
+            width: 100%;
+            height: 240px;
+            display: flex;
+            align-items: flex-end; /* Все стоят на одной линии */
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            background: #000; /* Фон контейнера строго черный */
+            overflow: hidden;
+        }
+
         .menu-card img { 
-            width: 100%; 
-            height: 250px; /* Фиксированная высота контейнера */
-            object-fit: contain; /* Картинка вписывается без искажений */
-            margin-bottom: 1.5rem; 
-            transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            display: block;
+            max-width: 110%;
+            max-height: 110%;
+            object-fit: contain;
+            /* МАГИЯ: этот режим убирает черные задние фоны у картинок */
+            mix-blend-mode: screen; 
+            transition: 0.5s ease;
         }
 
-        .menu-card:hover { border-color: var(--shift-lime); transform: translateY(-8px); background: #1a1a1a; }
-        .menu-card:hover img { transform: scale(1.08); filter: drop-shadow(0 0 15px rgba(204, 255, 0, 0.15)); }
+        .menu-card:hover { border-color: var(--shift-lime); transform: translateY(-5px); }
+        .menu-card:hover img { transform: scale(1.1) translateY(-10px); }
 
         .tag { font-size: 0.6rem; background: var(--shift-lime); color: #000; padding: 2px 8px; font-weight: 800; display: inline-block; margin-bottom: 10px; text-transform: uppercase; }
-        .menu-card h3 { font-family: var(--font-display); font-size: 1rem; margin-bottom: 8px; text-transform: uppercase; color: var(--text-white); }
-        .menu-card p { color: var(--text-gray); font-size: 0.85rem; margin-bottom: 25px; flex-grow: 1; }
+        .menu-card h3 { font-family: var(--font-display); font-size: 0.95rem; margin-bottom: 10px; text-transform: uppercase; }
+        .menu-card p { color: var(--text-gray); font-size: 0.8rem; margin-bottom: 20px; flex-grow: 1; }
         
-        .card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px solid #222; }
-        .price { font-weight: 800; color: var(--shift-lime); font-size: 1.2rem; }
-        .add-btn { width: 40px; height: 40px; background: #222; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #111; padding-top: 15px; }
+        .price { font-weight: 800; color: var(--shift-lime); font-size: 1.1rem; }
+        .add-btn { width: 35px; height: 35px; background: #111; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; }
         .menu-card:hover .add-btn { background: var(--shift-lime); color: black; }
 
-        /* Нижняя панель */
         .customizer {
             background: var(--shift-lime);
             color: black;
-            padding: 18px 5%;
+            padding: 15px;
             position: fixed;
             bottom: 0;
             width: 100%;
             display: flex;
             justify-content: center;
-            gap: 50px;
+            gap: 30px;
             font-weight: 800;
             text-transform: uppercase;
-            font-size: 0.75rem;
-            z-index: 100;
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.6);
-        }
-
-        @media (max-width: 768px) {
-            .customizer { gap: 20px; font-size: 0.6rem; padding: 15px; }
-            .grid { grid-template-columns: 1fr; }
-            .menu-card img { height: 200px; }
+            font-size: 0.7rem;
         }
     </style>
 </head>
@@ -152,37 +120,33 @@
             <a href="index.html" class="back-link">← Terminal</a>
         </nav>
 
-        <header class="menu-hero">
-            <h1>Protocol Menu</h1>
-        </header>
-
         <main class="menu-container">
             
             <section>
                 <div class="category-header"><h2>Core Brews</h2></div>
                 <div class="grid">
                     <div class="menu-card">
-                        <div>
+                        <div class="img-container">
                             <img src="menu/shiftespresso.png" alt="Espresso">
-                            <h3>Shift Espresso</h3>
-                            <p>High-clarity double extraction blend.</p>
                         </div>
+                        <h3>Shift Espresso</h3>
+                        <p>High-clarity double extraction blend.</p>
                         <div class="card-footer"><span class="price">£3.20</span><div class="add-btn">+</div></div>
                     </div>
                     <div class="menu-card">
-                        <div>
+                        <div class="img-container">
                             <img src="menu/flatwhite.png" alt="Flat White">
-                            <h3>Cyber Flat White</h3>
-                            <p>Precision-steamed micro-foam texture.</p>
                         </div>
+                        <h3>Cyber Flat White</h3>
+                        <p>Precision-steamed micro-foam texture.</p>
                         <div class="card-footer"><span class="price">£3.95</span><div class="add-btn">+</div></div>
                     </div>
                     <div class="menu-card">
-                        <div>
+                        <div class="img-container">
                             <img src="menu/systemblack.png" alt="System Black">
-                            <h3>System Black</h3>
-                            <p>Purified water lengthened espresso.</p>
                         </div>
+                        <h3>System Black</h3>
+                        <p>Purified water lengthened espresso.</p>
                         <div class="card-footer"><span class="price">£3.50</span><div class="add-btn">+</div></div>
                     </div>
                 </div>
@@ -192,92 +156,40 @@
                 <div class="category-header"><h2>Signatures</h2></div>
                 <div class="grid">
                     <div class="menu-card">
-                        <div>
+                        <div class="img-container">
                             <img src="menu/latte.png" alt="Lumen Glow">
-                            <span class="tag">Bestseller</span>
-                            <h3>LUMEN Glow Latte</h3>
-                            <p>Smoked vanilla and honey infusion.</p>
                         </div>
+                        <span class="tag">Bestseller</span>
+                        <h3>LUMEN Glow Latte</h3>
+                        <p>Smoked vanilla and honey infusion.</p>
                         <div class="card-footer"><span class="price">£4.75</span><div class="add-btn">+</div></div>
                     </div>
                     <div class="menu-card">
-                        <div>
+                        <div class="img-container">
                             <img src="menu/mintfuel.png" alt="Mint Fuel">
-                            <span class="tag">Iced Only</span>
-                            <h3>Nitro Mint Fuel</h3>
-                            <p>Fresh mint nitro cold brew energy.</p>
                         </div>
+                        <span class="tag">Iced Only</span>
+                        <h3>Nitro Mint Fuel</h3>
+                        <p>Fresh mint nitro cold brew energy.</p>
                         <div class="card-footer"><span class="price">£5.20</span><div class="add-btn">+</div></div>
                     </div>
                     <div class="menu-card">
-                        <div>
+                        <div class="img-container">
                             <img src="menu/tropic.png" alt="Tropic Roast">
-                            <span class="tag">Limited</span>
-                            <h3>Tropic Roast</h3>
-                            <p>Flash-chilled coconut water brew.</p>
                         </div>
+                        <span class="tag">Limited</span>
+                        <h3>Tropic Roast</h3>
+                        <p>Flash-chilled coconut water brew.</p>
                         <div class="card-footer"><span class="price">£5.50</span><div class="add-btn">+</div></div>
                     </div>
                 </div>
             </section>
 
-            <section>
-                <div class="category-header"><h2>Fuel Station</h2></div>
-                <div class="grid">
-                    <div class="menu-card">
-                        <div>
-                            <img src="menu/shiftbagel.png" alt="Bagel">
-                            <h3>Shift Bagel</h3>
-                            <p>Smoked salmon & chive cream cheese.</p>
-                        </div>
-                        <div class="card-footer"><span class="price">£7.50</span><div class="add-btn">+</div></div>
-                    </div>
-                    <div class="menu-card">
-                        <div>
-                            <img src="menu/matchaenergy.png" alt="Matcha Bar">
-                            <h3>Matcha Energy Bar</h3>
-                            <p>Raw vegan slow-release caffeine fuel.</p>
-                        </div>
-                        <div class="card-footer"><span class="price">£3.50</span><div class="add-btn">+</div></div>
-                    </div>
-                    <div class="menu-card">
-                        <div>
-                            <img src="menu/protocol.png" alt="Avocado">
-                            <h3>Avocado Protocol</h3>
-                            <p>Toasted rye with black sesame.</p>
-                        </div>
-                        <div class="card-footer"><span class="price">£8.20</span><div class="add-btn">+</div></div>
-                    </div>
-                </div>
-            </section>
-
-            <section style="margin-bottom: 50px;">
-                <div class="category-header"><h2>Hardware</h2></div>
-                <div class="grid">
-                    <div class="menu-card">
-                        <div>
-                            <img src="menu/coreblend.png" alt="Beans">
-                            <h3>Core Blend (250g)</h3>
-                            <p>Weekly roasted chocolate & cherry notes.</p>
-                        </div>
-                        <div class="card-footer"><span class="price">£12.00</span><div class="add-btn">+</div></div>
-                    </div>
-                    <div class="menu-card">
-                        <div>
-                            <img src="menu/tumbler.png" alt="Tumbler">
-                            <h3>SHIFT Tumbler</h3>
-                            <p>Insulated matte black steel vessel.</p>
-                        </div>
-                        <div class="card-footer"><span class="price">£24.00</span><div class="add-btn">+</div></div>
-                    </div>
-                </div>
-            </section>
-        </main>
+            </main>
 
         <div class="customizer">
-            <span>Pickup: 2 Mins</span>
             <span>Neural Network: Online</span>
-            <span>Shift: Active</span>
+            <span>Pickup: 2 Mins</span>
         </div>
     </div>
 
