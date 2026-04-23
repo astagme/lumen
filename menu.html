@@ -23,38 +23,39 @@
             color: var(--text-white);
             font-family: var(--font-main);
             line-height: 1.6;
+            padding-bottom: 80px; /* Space for the sticky bar */
         }
 
-        /* Nav Bar */
         nav {
             padding: 1.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #222;
+            background: var(--bg-black);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo { font-family: var(--font-display); text-decoration: none; color: white; font-size: 1.2rem; }
         .logo span { color: var(--shift-lime); }
-
         .back-link { text-decoration: none; color: var(--shift-lime); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
 
-        /* Menu Header with your Roaster Image */
         .menu-hero {
-            height: 300px;
+            height: 250px;
             background: linear-gradient(to top, var(--bg-black), transparent), 
                         url('images/menu.png') center/cover no-repeat;
             display: flex;
             align-items: center;
             padding: 0 5%;
-            filter: grayscale(100%) contrast(120%); /* Making it 'Tech-Edgy' */
+            filter: grayscale(100%) contrast(110%);
         }
 
-        .menu-hero h1 { font-family: var(--font-display); font-size: 4rem; text-transform: uppercase; }
+        .menu-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; }
 
-        /* Menu Grid */
         .menu-container {
-            padding: 60px 5%;
+            padding: 40px 5%;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -62,79 +63,78 @@
         .category-header {
             border-left: 4px solid var(--shift-lime);
             padding-left: 15px;
-            margin-bottom: 40px;
+            margin: 60px 0 30px;
         }
 
-        .category-header h2 { font-family: var(--font-display); text-transform: uppercase; font-size: 1.8rem; }
+        .category-header h2 { font-family: var(--font-display); text-transform: uppercase; font-size: 1.5rem; }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
-            margin-bottom: 80px;
         }
 
         .menu-card {
             background: var(--card-bg);
-            padding: 30px;
+            padding: 25px;
             border: 1px solid #222;
-            transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative;
-            cursor: pointer;
-        }
-
-        .menu-card:hover {
-            border-color: var(--shift-lime);
-            transform: translateY(-5px);
-        }
-
-        .menu-card h3 { font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 10px; text-transform: uppercase; }
-        .menu-card p { color: var(--text-gray); font-size: 0.85rem; margin-bottom: 20px; }
-        
-        .card-footer {
+            transition: 0.3s;
             display: flex;
+            flex-direction: column;
             justify-content: space-between;
-            align-items: center;
         }
 
-        .price { font-weight: 800; color: var(--shift-lime); font-size: 1.2rem; }
+        .menu-card:hover { border-color: var(--shift-lime); transform: scale(1.02); }
+
+        .tag {
+            font-size: 0.6rem;
+            background: var(--shift-lime);
+            color: #000;
+            padding: 2px 8px;
+            font-weight: 800;
+            display: inline-block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .menu-card h3 { font-family: var(--font-display); font-size: 1rem; margin-bottom: 8px; text-transform: uppercase; }
+        .menu-card p { color: var(--text-gray); font-size: 0.8rem; margin-bottom: 20px; min-height: 40px; }
+        
+        .card-footer { display: flex; justify-content: space-between; align-items: center; }
+        .price { font-weight: 800; color: var(--shift-lime); font-size: 1.1rem; }
         
         .add-btn {
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
             background: #222;
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
-            transition: 0.3s;
+            cursor: pointer;
         }
 
-        .menu-card:hover .add-btn {
-            background: var(--shift-lime);
-            color: black;
-        }
+        .menu-card:hover .add-btn { background: var(--shift-lime); color: black; }
 
-        /* Speed Customizer Bar */
         .customizer {
             background: var(--shift-lime);
             color: black;
             padding: 15px 5%;
-            position: sticky;
+            position: fixed;
             bottom: 0;
+            width: 100%;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: center;
+            gap: 30px;
             font-weight: 800;
             text-transform: uppercase;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             z-index: 10;
         }
 
-        @media (max-width: 768px) {
-            .menu-hero h1 { font-size: 2.5rem; }
-            .grid { grid-template-columns: 1fr; }
+        @media (max-width: 600px) {
+            .customizer { flex-direction: column; text-align: center; gap: 5px; }
         }
     </style>
 </head>
@@ -146,63 +146,75 @@
     </nav>
 
     <header class="menu-hero">
-        <h1>Fast-Craft<br>Menu</h1>
+        <h1>Full Protocol Menu</h1>
     </header>
 
     <main class="menu-container">
         
         <section>
-            <div class="category-header">
-                <h2>Caffeine Boost</h2>
-            </div>
+            <div class="category-header"><h2>Core Brews</h2></div>
             <div class="grid">
                 <div class="menu-card">
-                    <h3>Shift Espresso</h3>
-                    <p>Double shot. High clarity. Zero delay.</p>
-                    <div class="card-footer">
-                        <span class="price">£3.20</span>
-                        <div class="add-btn">+</div>
-                    </div>
-                </div>
-                <div class="menu-item menu-card">
-                    <h3>Cyber Latte</h3>
-                    <p>Micro-foam oat milk over deep roast concentrate.</p>
-                    <div class="card-footer">
-                        <span class="price">£4.20</span>
-                        <div class="add-btn">+</div>
-                    </div>
+                    <div><h3>Shift Espresso</h3><p>Pure extraction. Double shot of our high-clarity blend.</p></div>
+                    <div class="card-footer"><span class="price">£3.20</span><div class="add-btn">+</div></div>
                 </div>
                 <div class="menu-card">
-                    <h3>Nitro Cold Brew</h3>
-                    <p>12-hour steep. Nitrogen-infused velvet texture.</p>
-                    <div class="card-footer">
-                        <span class="price">£4.80</span>
-                        <div class="add-btn">+</div>
-                    </div>
+                    <div><h3>Cyber Flat White</h3><p>Precision-steamed silky milk over a double ristretto base.</p></div>
+                    <div class="card-footer"><span class="price">£3.95</span><div class="add-btn">+</div></div>
+                </div>
+                <div class="menu-card">
+                    <div><h3>Long Black</h3><p>Hot water base with double espresso layer. Clean & bold.</p></div>
+                    <div class="card-footer"><span class="price">£3.50</span><div class="add-btn">+</div></div>
                 </div>
             </div>
         </section>
 
         <section>
-            <div class="category-header">
-                <h2>Fuel</h2>
-            </div>
+            <div class="category-header"><h2>Signatures</h2></div>
             <div class="grid">
                 <div class="menu-card">
-                    <h3>Power Protein Pot</h3>
-                    <p>Greek yogurt, honey, house-made granola.</p>
-                    <div class="card-footer">
-                        <span class="price">£6.00</span>
-                        <div class="add-btn">+</div>
-                    </div>
+                    <div><span class="tag">Bestseller</span><h3>LUMEN Glow Latte</h3><p>Signature latte infused with honey and a hint of smoked vanilla.</p></div>
+                    <div class="card-footer"><span class="price">£4.75</span><div class="add-btn">+</div></div>
                 </div>
                 <div class="menu-card">
-                    <h3>Avocado Mash</h3>
-                    <p>Ready-to-go sourdough with chili & lime.</p>
-                    <div class="card-footer">
-                        <span class="price">£8.50</span>
-                        <div class="add-btn">+</div>
-                    </div>
+                    <div><span class="tag">Iced Only</span><h3>Nitro Mint Fuel</h3><p>Nitro cold brew shaken with fresh mint and a splash of cream.</p></div>
+                    <div class="card-footer"><span class="price">£5.20</span><div class="add-btn">+</div></div>
+                </div>
+                <div class="menu-card">
+                    <div><span class="tag">Limited</span><h3>Tropic Roast</h3><p>Flash-chilled pour over with coconut water and lime zest.</p></div>
+                    <div class="card-footer"><span class="price">£5.50</span><div class="add-btn">+</div></div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="category-header"><h2>The Fuel Station</h2></div>
+            <div class="grid">
+                <div class="menu-card">
+                    <div><h3>Shift Bagel</h3><p>Smoked salmon, cream cheese, and chive on a toasted poppy seed bagel.</p></div>
+                    <div class="card-footer"><span class="price">£7.50</span><div class="add-btn">+</div></div>
+                </div>
+                <div class="menu-card">
+                    <div><h3>Matcha Energy Bar</h3><p>Raw, vegan, and packed with slow-release energy for the day.</p></div>
+                    <div class="card-footer"><span class="price">£3.50</span><div class="add-btn">+</div></div>
+                </div>
+                <div class="menu-card">
+                    <div><h3>Avocado Protocol</h3><p>Toasted rye, smashed avocado, chili flakes, and black sesame seeds.</p></div>
+                    <div class="card-footer"><span class="price">£8.20</span><div class="add-btn">+</div></div>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-bottom: 100px;">
+            <div class="category-header"><h2>Retail / Beans</h2></div>
+            <div class="grid">
+                <div class="menu-card">
+                    <div><h3>Core Blend (250g)</h3><p>Notes of Dark Chocolate, Cherry, and Almond. Roasted weekly.</p></div>
+                    <div class="card-footer"><span class="price">£12.00</span><div class="add-btn">+</div></div>
+                </div>
+                <div class="menu-card">
+                    <div><h3>SHIFT Tumbler</h3><p>Matte black, insulated steel. Keeps coffee hot for 6 hours.</p></div>
+                    <div class="card-footer"><span class="price">£24.00</span><div class="add-btn">+</div></div>
                 </div>
             </div>
         </section>
@@ -210,9 +222,9 @@
     </main>
 
     <div class="customizer">
-        <span>Quick Add: Oat Milk +£0.50</span>
-        <span>Extra Shot +£1.00</span>
-        <span>Vanilla Glow +£0.80</span>
+        <span>Upgrade: Oat/Almond +£0.60</span>
+        <span>Upgrade: Triple Shot +£1.20</span>
+        <span>Current Pickup: 2 Mins</span>
     </div>
 
 </body>
