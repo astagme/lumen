@@ -18,7 +18,6 @@
             --font-main: 'Inter', sans-serif;
         }
 
-        /* ТА САМАЯ ПЛАВНАЯ АНИМАЦИЯ */
         @keyframes pageLoad {
             from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
             to { opacity: 1; transform: translateY(0); filter: blur(0); }
@@ -34,7 +33,6 @@
             overflow-x: hidden;
         }
 
-        /* Применяем анимацию ко всей обертке */
         .fade-wrapper { 
             animation: pageLoad 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; 
         }
@@ -85,7 +83,7 @@
         }
 
         .menu-container { padding: 40px 5% 180px; max-width: 1200px; margin: 0 auto; }
-        .category-header { border-left: 4px solid var(--shift-lime); padding-left: 15px; margin: 70px 0 30px; }
+        .category-header { border-left: 4px solid var(--shift-lime); padding-left: 15px; margin: 60px 0 30px; }
         .category-header h2 { font-family: var(--font-display); text-transform: uppercase; font-size: 1.4rem; }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; }
@@ -162,7 +160,22 @@
         .cart-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
         .close-cart { color: var(--shift-lime); cursor: pointer; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
         #cart-items { flex-grow: 1; overflow-y: auto; }
-        .cart-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #111; font-size: 0.9rem; }
+        
+        .cart-item { 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 15px 0; border-bottom: 1px solid #111; font-size: 0.9rem; 
+        }
+        
+        /* КНОПКА УДАЛЕНИЯ */
+        .remove-btn {
+            color: #ff3333;
+            cursor: pointer;
+            font-weight: 800;
+            margin-left: 15px;
+            transition: 0.3s;
+        }
+        .remove-btn:hover { color: white; }
+
         .cart-footer-panel { border-top: 1px solid var(--shift-lime); padding-top: 25px; }
         .total { display: flex; justify-content: space-between; font-family: var(--font-display); font-size: 1.1rem; }
         .checkout-btn { width: 100%; background: var(--shift-lime); border: none; padding: 18px; font-family: var(--font-display); cursor: pointer; margin-top: 25px; }
@@ -185,7 +198,6 @@
         </header>
 
         <main class="menu-container">
-            
             <section>
                 <div class="category-header"><h2>Core Brews</h2></div>
                 <div class="grid">
@@ -253,25 +265,6 @@
                     </div>
                 </div>
             </section>
-
-            <section>
-                <div class="category-header"><h2>Hardware</h2></div>
-                <div class="grid">
-                    <div class="menu-card" data-name="Core Blend 250g" data-price="12.00">
-                        <div class="img-container"><img src="menu/coreblend.png" alt="Beans"></div>
-                        <h3>Core Blend (250g)</h3>
-                        <p>Weekly roasted chocolate & cherry notes.</p>
-                        <div class="card-footer"><span class="price">£12.00</span><button class="add-btn">+</button></div>
-                    </div>
-                    <div class="menu-card" data-name="SHIFT Tumbler" data-price="24.00">
-                        <div class="img-container"><img src="menu/tumbler.png" alt="Tumbler"></div>
-                        <h3>SHIFT Tumbler</h3>
-                        <p>Insulated matte black steel vessel.</p>
-                        <div class="card-footer"><span class="price">£24.00</span><button class="add-btn">+</button></div>
-                    </div>
-                </div>
-            </section>
-
         </main>
 
         <div class="customizer">
@@ -297,6 +290,7 @@
             document.getElementById('side-cart').classList.toggle('active');
             document.getElementById('cart-overlay').classList.toggle('active');
         }
+
         document.querySelectorAll('.add-btn').forEach(button => {
             button.addEventListener('click', () => {
                 const card = button.closest('.menu-card');
@@ -308,16 +302,30 @@
                 setTimeout(() => button.innerText = '+', 600);
             });
         });
+
+        // ФУНКЦИЯ УДАЛЕНИЯ
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
         function updateCartUI() {
             const cartContainer = document.getElementById('cart-items');
             const countLabel = document.getElementById('cart-count');
             const totalLabel = document.getElementById('cart-total');
             cartContainer.innerHTML = '';
             let currentTotal = 0;
-            cart.forEach(item => {
+            
+            cart.forEach((item, index) => {
                 const div = document.createElement('div');
                 div.className = 'cart-item';
-                div.innerHTML = `<span>${item.name}</span><span style="color: var(--shift-lime)">£${item.price.toFixed(2)}</span>`;
+                div.innerHTML = `
+                    <div>
+                        <span>${item.name}</span><br>
+                        <span style="color: var(--shift-lime); font-size: 0.8rem">£${item.price.toFixed(2)}</span>
+                    </div>
+                    <span class="remove-btn" onclick="removeFromCart(${index})">✕</span>
+                `;
                 cartContainer.appendChild(div);
                 currentTotal += item.price;
             });
