@@ -1,133 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu | LUMEN SHIFT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-black: #0F0F0F;
-            --shift-lime: #CCFF00;
-            --text-white: #FFFFFF;
-            --text-gray: #888888;
-            --card-bg: #151515;
-            --font-display: 'Archivo Black', sans-serif;
-            --font-main: 'Inter', sans-serif;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background-color: var(--bg-black);
-            color: var(--text-white);
-            font-family: var(--font-main);
-            line-height: 1.6;
-            padding-bottom: 80px;
-        }
-
-        nav {
-            padding: 1.5rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #222;
-            background: var(--bg-black);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .logo { font-family: var(--font-display); text-decoration: none; color: white; font-size: 1.2rem; }
-        .logo span { color: var(--shift-lime); }
-        .back-link { text-decoration: none; color: var(--shift-lime); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; }
-
-        .menu-hero {
-            height: 250px;
-            background: linear-gradient(to top, var(--bg-black), transparent), 
-                        url('images/menu.png') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            filter: grayscale(100%) contrast(110%);
-        }
-
-        .menu-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; }
-
-        .menu-container { padding: 40px 5%; max-width: 1200px; margin: 0 auto; }
-
-        .category-header { border-left: 4px solid var(--shift-lime); padding-left: 15px; margin: 60px 0 30px; }
-        .category-header h2 { font-family: var(--font-display); text-transform: uppercase; font-size: 1.5rem; }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-
-        .menu-card {
-            background: var(--card-bg);
-            padding: 25px;
-            border: 1px solid #222;
-            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .menu-card img {
-            width: 100%;
-            height: auto;
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 0 0px rgba(204, 255, 0, 0));
-            transition: 0.4s;
-        }
-
-        .menu-card:hover { border-color: var(--shift-lime); transform: translateY(-5px); }
-        .menu-card:hover img { filter: drop-shadow(0 0 15px rgba(204, 255, 0, 0.2)); }
-
-        .tag { font-size: 0.6rem; background: var(--shift-lime); color: #000; padding: 2px 8px; font-weight: 800; display: inline-block; margin-bottom: 10px; text-transform: uppercase; }
-        .menu-card h3 { font-family: var(--font-display); font-size: 1rem; margin-bottom: 8px; text-transform: uppercase; }
-        .menu-card p { color: var(--text-gray); font-size: 0.8rem; margin-bottom: 20px; }
-        
-        .card-footer { display: flex; justify-content: space-between; align-items: center; }
-        .price { font-weight: 800; color: var(--shift-lime); font-size: 1.1rem; }
-        
-        .add-btn { width: 30px; height: 30px; background: #222; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; transition: 0.3s; }
-        .menu-card:hover .add-btn { background: var(--shift-lime); color: black; }
-
-        .customizer {
-            background: var(--shift-lime);
-            color: black;
-            padding: 15px 5%;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            font-weight: 800;
-            text-transform: uppercase;
-            font-size: 0.7rem;
-            z-index: 10;
-        }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <a href="index.html" class="logo">LUMEN<span>SHIFT</span></a>
-        <a href="index.html" class="back-link">← Terminal</a>
-    </nav>
-
-    <header class="menu-hero">
-        <h1>Full Protocol Menu</h1>
-    </header>
-
-    <main class="menu-container">
-        
-        <section>
+<section>
             <div class="category-header"><h2>Core Brews</h2></div>
             <div class="grid">
                 <div class="menu-card">
                     <div>
-                        <img src="images/menu/shiftespresso.png" alt="Espresso">
+                        <img src="menu/shiftespresso.png" alt="Espresso">
                         <h3>Shift Espresso</h3>
                         <p>Double shot high-clarity blend.</p>
                     </div>
@@ -135,7 +11,7 @@
                 </div>
                 <div class="menu-card">
                     <div>
-                        <img src="images/menu/flatwhite.png" alt="Flat White">
+                        <img src="menu/flatwhite.png" alt="Flat White">
                         <h3>Cyber Flat White</h3>
                         <p>Precision-steamed micro-foam.</p>
                     </div>
@@ -143,7 +19,7 @@
                 </div>
                 <div class="menu-card">
                     <div>
-                        <img src="images/menu/systemblack.png" alt="System Black">
+                        <img src="menu/systemblack.png" alt="System Black">
                         <h3>System Black</h3>
                         <p>Purified water lengthened espresso.</p>
                     </div>
@@ -157,7 +33,7 @@
             <div class="grid">
                 <div class="menu-card">
                     <div>
-                        <img src="images/menu/latte.png" alt="Lumen Glow">
+                        <img src="menu/latte.png" alt="Lumen Glow">
                         <span class="tag">Bestseller</span>
                         <h3>LUMEN Glow Latte</h3>
                         <p>Honey and smoked vanilla infusion.</p>
@@ -166,7 +42,7 @@
                 </div>
                 <div class="menu-card">
                     <div>
-                        <img src="images/menu/mintfuel.png" alt="Mint Fuel">
+                        <img src="menu/mintfuel.png" alt="Mint Fuel">
                         <span class="tag">Iced Only</span>
                         <h3>Nitro Mint Fuel</h3>
                         <p>Fresh mint nitro cold brew.</p>
@@ -175,7 +51,7 @@
                 </div>
                 <div class="menu-card">
                     <div>
-                        <img src="images/menu/tropic.png" alt="Tropic Roast">
+                        <img src="menu/tropic.png" alt="Tropic Roast">
                         <span class="tag">Limited</span>
                         <h3>Tropic Roast</h3>
                         <p>Flash-chilled coconut water brew.</p>
@@ -190,7 +66,7 @@
             <div class="grid">
                 <div class="menu-card">
                     <div>
-                        <img src="images/menu/shiftbagel.png" alt="Bagel">
+                        <img src="menu/shiftbagel.png" alt="Bagel">
                         <h3>Shift Bagel</h3>
                         <p>Smoked salmon & chive cream cheese.</p>
                     </div>
@@ -198,7 +74,7 @@
                 </div>
                 <div class="menu-card">
                     <div>
-                        <img src="images/menu/matchaenergy.png" alt="Matcha Bar">
+                        <img src="menu/matchaenergy.png" alt="Matcha Bar">
                         <h3>Matcha Energy Bar</h3>
                         <p>Raw vegan slow-release energy.</p>
                     </div>
@@ -206,7 +82,7 @@
                 </div>
                 <div class="menu-card">
                     <div>
-                        <img src="images/menu/protocol.png" alt="Avocado">
+                        <img src="menu/protocol.png" alt="Avocado">
                         <h3>Avocado Protocol</h3>
                         <p>Toasted rye with black sesame.</p>
                     </div>
@@ -220,7 +96,7 @@
             <div class="grid">
                 <div class="menu-card">
                     <div>
-                        <img src="images/menu/coreblend.png" alt="Beans">
+                        <img src="menu/coreblend.png" alt="Beans">
                         <h3>Core Blend (250g)</h3>
                         <p>Notes of chocolate and cherry.</p>
                     </div>
@@ -228,7 +104,7 @@
                 </div>
                 <div class="menu-card">
                     <div>
-                        <img src="images/menu/tumbler.png" alt="Tumbler">
+                        <img src="menu/tumbler.png" alt="Tumbler">
                         <h3>SHIFT Tumbler</h3>
                         <p>Insulated matte black steel.</p>
                     </div>
@@ -236,13 +112,3 @@
                 </div>
             </div>
         </section>
-
-    </main>
-
-    <div class="customizer">
-        <span>Current Pickup: 2 Mins</span>
-        <span>Neural Network Active</span>
-    </div>
-
-</body>
-</html>
