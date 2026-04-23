@@ -22,78 +22,56 @@
             background-color: var(--bg-black);
             color: var(--text-white);
             font-family: var(--font-main);
-            overflow-x: hidden;
+            overflow: hidden; /* Оставляем чистый экран без скролла */
         }
 
-        /* НАВИГАЦИЯ (ФИКС) */
         nav {
-            padding: 1.2rem 5%;
+            padding: 1.5rem 5%;
             display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 1px solid #111;
-            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(15px);
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            flex-wrap: wrap; gap: 10px;
         }
 
         .logo { font-family: var(--font-display); text-decoration: none; color: white; font-size: 1.1rem; text-transform: uppercase; }
         .logo span { color: var(--shift-lime); }
 
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-links a { 
-            text-decoration: none; color: var(--text-white); font-weight: 700; 
-            font-size: 0.75rem; text-transform: uppercase; transition: 0.3s; 
-        }
-        .nav-links a:hover { color: var(--shift-lime); }
+        .nav-right { display: flex; align-items: center; gap: 20px; }
 
-        .nav-right { display: flex; align-items: center; }
+        /* Та самая корзинка */
+        .cart-icon {
+            color: var(--text-white);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
 
         .order-btn-nav {
             background: var(--shift-lime); color: black; padding: 8px 18px;
             font-family: var(--font-display); font-size: 0.75rem; text-decoration: none;
             clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
-            transition: 0.3s;
         }
-        .order-btn-nav:hover { transform: scale(1.05); filter: brightness(1.1); }
 
-        /* HERO SECTION */
         .hero {
             height: 100vh;
             display: flex; flex-direction: column;
             justify-content: center; align-items: center;
-            text-align: center; padding: 0 5%;
-            background: radial-gradient(circle at center, #111 0%, #000 70%);
+            text-align: center;
         }
 
         .hero h1 {
             font-family: var(--font-display);
             font-size: clamp(3rem, 12vw, 8rem);
             line-height: 0.85; text-transform: uppercase;
-            margin-bottom: 30px;
         }
-
         .hero h1 span { color: var(--shift-lime); }
 
-        .cta-main {
-            display: inline-block;
-            padding: 20px 40px;
-            background: white; color: black;
-            font-family: var(--font-display);
-            text-decoration: none; text-transform: uppercase;
-            font-size: 1rem; transition: 0.3s;
-            clip-path: polygon(5% 0, 100% 0, 95% 100%, 0% 100%);
-        }
-        .cta-main:hover { background: var(--shift-lime); transform: translateY(-5px); }
-
-        /* MOBILE ADAPTATION */
-        @media (max-width: 768px) {
-            nav { justify-content: space-between; padding: 1rem 5%; }
-            .nav-links { 
-                order: 3; width: 100%; justify-content: center; 
-                gap: 2.5rem; border-top: 1px solid #222; 
-                padding-top: 12px; margin-top: 5px; 
-            }
-            .logo { font-size: 1rem; }
-            .order-btn-nav { font-size: 0.65rem; padding: 6px 14px; }
+        .sub-text {
+            margin-top: 20px;
+            color: #444;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 0.7rem;
+            font-weight: 800;
         }
     </style>
 </head>
@@ -102,20 +80,15 @@
     <nav>
         <a href="index.html" class="logo">LUMEN<span>SHIFT</span></a>
         
-        <div class="nav-links">
-            <a href="menu.html">Menu</a>
-            <a href="story.html">Locations</a>
-        </div>
-
         <div class="nav-right">
-            <a href="menu.html" class="order-btn-nav">ORDER NOW</a>
+            <div class="cart-icon">Cart [0]</div>
+            <a href="menu.html" class="order-btn-nav">Order</a>
         </div>
     </nav>
 
     <main class="hero">
         <h1>High<br><span>Velocity</span><br>Caffeine</h1>
-        <p style="margin-bottom: 40px; color: #888; text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem;">Protocol v.04 // Shift Your Reality</p>
-        <a href="menu.html" class="cta-main">Enter Menu</a>
+        <p class="sub-text">Protocol v.04 // Shift Your Reality</p>
     </main>
 
 </body>
