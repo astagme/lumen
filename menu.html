@@ -23,7 +23,7 @@
             color: var(--text-white);
             font-family: var(--font-main);
             line-height: 1.6;
-            padding-bottom: 80px; /* Space for the sticky bar */
+            padding-bottom: 80px;
         }
 
         nav {
@@ -54,67 +54,42 @@
 
         .menu-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; }
 
-        .menu-container {
-            padding: 40px 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        .menu-container { padding: 40px 5%; max-width: 1200px; margin: 0 auto; }
 
-        .category-header {
-            border-left: 4px solid var(--shift-lime);
-            padding-left: 15px;
-            margin: 60px 0 30px;
-        }
-
+        .category-header { border-left: 4px solid var(--shift-lime); padding-left: 15px; margin: 60px 0 30px; }
         .category-header h2 { font-family: var(--font-display); text-transform: uppercase; font-size: 1.5rem; }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
 
         .menu-card {
             background: var(--card-bg);
             padding: 25px;
             border: 1px solid #222;
-            transition: 0.3s;
+            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
         }
 
-        .menu-card:hover { border-color: var(--shift-lime); transform: scale(1.02); }
-
-        .tag {
-            font-size: 0.6rem;
-            background: var(--shift-lime);
-            color: #000;
-            padding: 2px 8px;
-            font-weight: 800;
-            display: inline-block;
-            margin-bottom: 10px;
-            text-transform: uppercase;
+        .menu-card img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 0px rgba(204, 255, 0, 0));
+            transition: 0.4s;
         }
 
+        .menu-card:hover { border-color: var(--shift-lime); transform: translateY(-5px); }
+        .menu-card:hover img { filter: drop-shadow(0 0 15px rgba(204, 255, 0, 0.2)); }
+
+        .tag { font-size: 0.6rem; background: var(--shift-lime); color: #000; padding: 2px 8px; font-weight: 800; display: inline-block; margin-bottom: 10px; text-transform: uppercase; }
         .menu-card h3 { font-family: var(--font-display); font-size: 1rem; margin-bottom: 8px; text-transform: uppercase; }
-        .menu-card p { color: var(--text-gray); font-size: 0.8rem; margin-bottom: 20px; min-height: 40px; }
+        .menu-card p { color: var(--text-gray); font-size: 0.8rem; margin-bottom: 20px; }
         
         .card-footer { display: flex; justify-content: space-between; align-items: center; }
         .price { font-weight: 800; color: var(--shift-lime); font-size: 1.1rem; }
         
-        .add-btn {
-            width: 30px;
-            height: 30px;
-            background: #222;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
+        .add-btn { width: 30px; height: 30px; background: #222; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; transition: 0.3s; }
         .menu-card:hover .add-btn { background: var(--shift-lime); color: black; }
 
         .customizer {
@@ -131,10 +106,6 @@
             text-transform: uppercase;
             font-size: 0.7rem;
             z-index: 10;
-        }
-
-        @media (max-width: 600px) {
-            .customizer { flex-direction: column; text-align: center; gap: 5px; }
         }
     </style>
 </head>
@@ -155,15 +126,27 @@
             <div class="category-header"><h2>Core Brews</h2></div>
             <div class="grid">
                 <div class="menu-card">
-                    <div><h3>Shift Espresso</h3><p>Pure extraction. Double shot of our high-clarity blend.</p></div>
+                    <div>
+                        <img src="images/menu/shiftespresso.png" alt="Espresso">
+                        <h3>Shift Espresso</h3>
+                        <p>Double shot high-clarity blend.</p>
+                    </div>
                     <div class="card-footer"><span class="price">£3.20</span><div class="add-btn">+</div></div>
                 </div>
                 <div class="menu-card">
-                    <div><h3>Cyber Flat White</h3><p>Precision-steamed silky milk over a double ristretto base.</p></div>
+                    <div>
+                        <img src="images/menu/flatwhite.png" alt="Flat White">
+                        <h3>Cyber Flat White</h3>
+                        <p>Precision-steamed micro-foam.</p>
+                    </div>
                     <div class="card-footer"><span class="price">£3.95</span><div class="add-btn">+</div></div>
                 </div>
                 <div class="menu-card">
-                    <div><h3>Long Black</h3><p>Hot water base with double espresso layer. Clean & bold.</p></div>
+                    <div>
+                        <img src="images/menu/systemblack.png" alt="System Black">
+                        <h3>System Black</h3>
+                        <p>Purified water lengthened espresso.</p>
+                    </div>
                     <div class="card-footer"><span class="price">£3.50</span><div class="add-btn">+</div></div>
                 </div>
             </div>
@@ -173,47 +156,82 @@
             <div class="category-header"><h2>Signatures</h2></div>
             <div class="grid">
                 <div class="menu-card">
-                    <div><span class="tag">Bestseller</span><h3>LUMEN Glow Latte</h3><p>Signature latte infused with honey and a hint of smoked vanilla.</p></div>
+                    <div>
+                        <img src="images/menu/latte.png" alt="Lumen Glow">
+                        <span class="tag">Bestseller</span>
+                        <h3>LUMEN Glow Latte</h3>
+                        <p>Honey and smoked vanilla infusion.</p>
+                    </div>
                     <div class="card-footer"><span class="price">£4.75</span><div class="add-btn">+</div></div>
                 </div>
                 <div class="menu-card">
-                    <div><span class="tag">Iced Only</span><h3>Nitro Mint Fuel</h3><p>Nitro cold brew shaken with fresh mint and a splash of cream.</p></div>
+                    <div>
+                        <img src="images/menu/mintfuel.png" alt="Mint Fuel">
+                        <span class="tag">Iced Only</span>
+                        <h3>Nitro Mint Fuel</h3>
+                        <p>Fresh mint nitro cold brew.</p>
+                    </div>
                     <div class="card-footer"><span class="price">£5.20</span><div class="add-btn">+</div></div>
                 </div>
                 <div class="menu-card">
-                    <div><span class="tag">Limited</span><h3>Tropic Roast</h3><p>Flash-chilled pour over with coconut water and lime zest.</p></div>
+                    <div>
+                        <img src="images/menu/tropic.png" alt="Tropic Roast">
+                        <span class="tag">Limited</span>
+                        <h3>Tropic Roast</h3>
+                        <p>Flash-chilled coconut water brew.</p>
+                    </div>
                     <div class="card-footer"><span class="price">£5.50</span><div class="add-btn">+</div></div>
                 </div>
             </div>
         </section>
 
         <section>
-            <div class="category-header"><h2>The Fuel Station</h2></div>
+            <div class="category-header"><h2>Fuel Station</h2></div>
             <div class="grid">
                 <div class="menu-card">
-                    <div><h3>Shift Bagel</h3><p>Smoked salmon, cream cheese, and chive on a toasted poppy seed bagel.</p></div>
+                    <div>
+                        <img src="images/menu/shiftbagel.png" alt="Bagel">
+                        <h3>Shift Bagel</h3>
+                        <p>Smoked salmon & chive cream cheese.</p>
+                    </div>
                     <div class="card-footer"><span class="price">£7.50</span><div class="add-btn">+</div></div>
                 </div>
                 <div class="menu-card">
-                    <div><h3>Matcha Energy Bar</h3><p>Raw, vegan, and packed with slow-release energy for the day.</p></div>
+                    <div>
+                        <img src="images/menu/matchaenergy.png" alt="Matcha Bar">
+                        <h3>Matcha Energy Bar</h3>
+                        <p>Raw vegan slow-release energy.</p>
+                    </div>
                     <div class="card-footer"><span class="price">£3.50</span><div class="add-btn">+</div></div>
                 </div>
                 <div class="menu-card">
-                    <div><h3>Avocado Protocol</h3><p>Toasted rye, smashed avocado, chili flakes, and black sesame seeds.</p></div>
+                    <div>
+                        <img src="images/menu/protocol.png" alt="Avocado">
+                        <h3>Avocado Protocol</h3>
+                        <p>Toasted rye with black sesame.</p>
+                    </div>
                     <div class="card-footer"><span class="price">£8.20</span><div class="add-btn">+</div></div>
                 </div>
             </div>
         </section>
 
-        <section style="margin-bottom: 100px;">
-            <div class="category-header"><h2>Retail / Beans</h2></div>
+        <section style="margin-bottom: 50px;">
+            <div class="category-header"><h2>Hardware & Retail</h2></div>
             <div class="grid">
                 <div class="menu-card">
-                    <div><h3>Core Blend (250g)</h3><p>Notes of Dark Chocolate, Cherry, and Almond. Roasted weekly.</p></div>
+                    <div>
+                        <img src="images/menu/coreblend.png" alt="Beans">
+                        <h3>Core Blend (250g)</h3>
+                        <p>Notes of chocolate and cherry.</p>
+                    </div>
                     <div class="card-footer"><span class="price">£12.00</span><div class="add-btn">+</div></div>
                 </div>
                 <div class="menu-card">
-                    <div><h3>SHIFT Tumbler</h3><p>Matte black, insulated steel. Keeps coffee hot for 6 hours.</p></div>
+                    <div>
+                        <img src="images/menu/tumbler.png" alt="Tumbler">
+                        <h3>SHIFT Tumbler</h3>
+                        <p>Insulated matte black steel.</p>
+                    </div>
                     <div class="card-footer"><span class="price">£24.00</span><div class="add-btn">+</div></div>
                 </div>
             </div>
@@ -222,9 +240,8 @@
     </main>
 
     <div class="customizer">
-        <span>Upgrade: Oat/Almond +£0.60</span>
-        <span>Upgrade: Triple Shot +£1.20</span>
         <span>Current Pickup: 2 Mins</span>
+        <span>Neural Network Active</span>
     </div>
 
 </body>
