@@ -64,13 +64,15 @@
 
         /* Hero Section */
         .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 5%;
-            background: linear-gradient(90deg, var(--bg-black) 40%, transparent), 
-                        url('images/homepage.png') center/cover no-repeat;
-        }
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+    /* We added a 'grayscale' filter and a darker gradient */
+    background: linear-gradient(90deg, var(--bg-black) 40%, rgba(0,0,0,0.3)), 
+                url('images/homepage.png') center/cover no-repeat;
+    background-blend-mode: multiply; /* This makes the image feel 'inked' into the black background */
+}
 
         .hero-content {
             max-width: 700px;
