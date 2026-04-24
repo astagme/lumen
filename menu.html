@@ -31,14 +31,12 @@
             overflow-x: hidden;
         }
 
-        /* ПОЯВЛЕНИЕ СТРАНИЦЫ */
         .fade-wrapper { 
             opacity: 0; transform: translateY(30px); filter: blur(10px);
             transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .fade-wrapper.is-visible { opacity: 1; transform: translateY(0); filter: blur(0); }
 
-        /* НАВИГАЦИЯ */
         nav {
             padding: 1rem 5%;
             display: flex; justify-content: space-between; align-items: center;
@@ -48,12 +46,7 @@
             flex-wrap: wrap; gap: 10px;
         }
 
-        /* ЛОГОТИП (КАК НА ГЛАВНОЙ) */
-        .logo-img {
-            height: 40px;
-            width: auto;
-            display: block;
-        }
+        .logo-img { height: 40px; width: auto; display: block; }
 
         .nav-links { display: flex; gap: 1.5rem; }
         .nav-links a { 
@@ -62,17 +55,14 @@
         }
         .nav-links a:hover { color: var(--shift-lime); }
 
-        .nav-right { display: flex; align-items: center; }
-
         .cart-trigger {
             background: var(--shift-lime); color: black; padding: 8px 18px;
             font-family: var(--font-display); font-size: 0.75rem; cursor: pointer;
             clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
-            transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: 0.2s;
         }
         .cart-bump { transform: scale(1.1); box-shadow: 0 0 20px var(--shift-lime); }
 
-        /* HERO */
         .menu-hero {
             height: 300px;
             background: linear-gradient(to top, var(--bg-black), transparent), url('images/menu.png') center/cover no-repeat;
@@ -80,7 +70,6 @@
         }
         .menu-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4rem); text-transform: uppercase; line-height: 0.9; }
 
-        /* ТОВАРЫ */
         .menu-container { padding: 40px 5% 150px; max-width: 1200px; margin: 0 auto; }
         .category-header { border-left: 4px solid var(--shift-lime); padding-left: 15px; margin: 60px 0 30px; }
         .category-header h2 { font-family: var(--font-display); text-transform: uppercase; font-size: 1.4rem; }
@@ -89,10 +78,10 @@
 
         .menu-card {
             background: var(--card-bg); padding: 25px; border: 1px solid #111;
-            transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1); display: flex; flex-direction: column;
+            transition: 0.4s; display: flex; flex-direction: column;
         }
         .img-container { width: 100%; height: 220px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
-        .menu-card img { max-width: 100%; max-height: 100%; object-fit: contain; mix-blend-mode: screen; transition: 0.5s; }
+        .menu-card img { max-width: 100%; max-height: 100%; object-fit: contain; mix-blend-mode: screen; }
         .menu-card:hover { border-color: var(--shift-lime); background: #0c0c0c; }
         
         .tag { font-size: 0.55rem; background: var(--shift-lime); color: #000; padding: 2px 8px; font-weight: 800; display: inline-block; margin-bottom: 10px; text-transform: uppercase; }
@@ -102,13 +91,9 @@
         .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #1a1a1a; padding-top: 15px; }
         .price { font-weight: 800; color: var(--shift-lime); font-size: 1.1rem; }
         
-        .add-btn { 
-            width: 38px; height: 38px; background: #1a1a1a; color: white; border: none;
-            display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; 
-        }
+        .add-btn { width: 38px; height: 38px; background: #1a1a1a; color: white; border: none; cursor: pointer; transition: 0.3s; }
         .add-btn.success { background: var(--shift-lime) !important; color: black !important; }
 
-        /* КОРЗИНА ПАНЕЛЬ */
         .cart-panel {
             position: fixed; right: -400px; top: 0; width: 350px; height: 100%;
             background: #0a0a0a; border-left: 1px solid var(--shift-lime);
@@ -120,21 +105,19 @@
         #cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; z-index: 1500; backdrop-filter: blur(5px); }
         #cart-overlay.active { display: block; }
 
-        /* ЗЕЛЕНАЯ ПОЛОСКА */
         .customizer {
             background: var(--shift-lime); color: black; padding: 15px 5%;
             position: fixed; bottom: 0; left: 0; width: 100%; display: flex;
             justify-content: center; gap: 40px; font-weight: 800;
             text-transform: uppercase; font-size: 0.7rem; z-index: 900;
-            border-top: 2px solid black; letter-spacing: 1px;
+            border-top: 2px solid black;
         }
 
-        /* MOBILE FIX */
         @media (max-width: 768px) { 
-            nav { justify-content: space-between; padding: 0.8rem 5%; }
+            nav { padding: 0.8rem 5%; }
             .logo-img { height: 32px; }
             .nav-links { order: 3; width: 100%; justify-content: center; gap: 2rem; border-top: 1px solid #111; padding-top: 10px; margin-top: 5px; }
-            .customizer { gap: 15px; font-size: 0.6rem; padding: 12px; }
+            .customizer { display: none; }
             .cart-panel { width: 100%; right: -100%; }
         }
     </style>
@@ -143,28 +126,19 @@
 
     <div id="wrapper" class="fade-wrapper">
         <nav>
-            <a href="index.html" class="logo">
-                <img src="images/ls.png" alt="LUMEN SHIFT" class="logo-img">
-            </a>
-            
+            <a href="index.html" class="logo"><img src="images/ls.png" alt="LUMEN SHIFT" class="logo-img"></a>
             <div class="nav-links">
                 <a href="menu.html" style="color: var(--shift-lime)">Menu</a>
                 <a href="story.html">Locations</a>
             </div>
-
             <div class="nav-right">
-                <div class="cart-trigger" id="cart-btn" onclick="toggleCart()">
-                    CART [<span id="cart-count">0</span>]
-                </div>
+                <div class="cart-trigger" id="cart-btn" onclick="toggleCart()">CART [<span id="cart-count">0</span>]</div>
             </div>
         </nav>
 
-        <header class="menu-hero">
-            <h1>Protocol<br>Menu</h1>
-        </header>
+        <header class="menu-hero"><h1>Protocol<br>Menu</h1></header>
 
         <main class="menu-container">
-            
             <section>
                 <div class="category-header"><h2>Core Brews</h2></div>
                 <div class="grid">
@@ -228,6 +202,21 @@
                 </div>
             </section>
 
+            <section>
+                <div class="category-header"><h2>Hardware</h2></div>
+                <div class="grid">
+                    <div class="menu-card" data-name="Core Blend (250g)" data-price="12.00">
+                        <div class="img-container"><img src="menu/coreblend.png"></div>
+                        <h3>Core Blend (250g)</h3><p>Weekly roasted chocolate & cherry notes.</p>
+                        <div class="card-footer"><span class="price">£12.00</span><button class="add-btn">+</button></div>
+                    </div>
+                    <div class="menu-card" data-name="SHIFT Tumbler" data-price="24.00">
+                        <div class="img-container"><img src="menu/tumbler.png"></div>
+                        <h3>SHIFT Tumbler</h3><p>Insulated matte black steel vessel.</p>
+                        <div class="card-footer"><span class="price">£24.00</span><button class="add-btn">+</button></div>
+                    </div>
+                </div>
+            </section>
         </main>
 
         <div class="customizer">
@@ -269,11 +258,9 @@
             button.addEventListener('click', () => {
                 const card = button.closest('.menu-card');
                 cart.push({name: card.getAttribute('data-name'), price: parseFloat(card.getAttribute('data-price'))});
-                
                 button.classList.add('success'); button.innerText = '✓';
                 cartBtn.classList.add('cart-bump');
                 updateCartUI();
-
                 setTimeout(() => { button.classList.remove('success'); button.innerText = '+'; }, 600);
                 setTimeout(() => { cartBtn.classList.remove('cart-bump'); }, 300);
             });
