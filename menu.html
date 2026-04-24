@@ -38,18 +38,22 @@
         }
         .fade-wrapper.is-visible { opacity: 1; transform: translateY(0); filter: blur(0); }
 
-        /* НАВИГАЦИЯ (АДАПТИВНАЯ) */
+        /* НАВИГАЦИЯ */
         nav {
-            padding: 1.2rem 5%;
+            padding: 1rem 5%;
             display: flex; justify-content: space-between; align-items: center;
             border-bottom: 1px solid #111;
             background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(15px);
-            position: sticky; top: 0; z-index: 100;
+            position: sticky; top: 0; z-index: 1000;
             flex-wrap: wrap; gap: 10px;
         }
 
-        .logo { font-family: var(--font-display); text-decoration: none; color: white; font-size: 1.1rem; text-transform: uppercase; }
-        .logo span { color: var(--shift-lime); }
+        /* ЛОГОТИП (КАК НА ГЛАВНОЙ) */
+        .logo-img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
 
         .nav-links { display: flex; gap: 1.5rem; }
         .nav-links a { 
@@ -108,28 +112,28 @@
         .cart-panel {
             position: fixed; right: -400px; top: 0; width: 350px; height: 100%;
             background: #0a0a0a; border-left: 1px solid var(--shift-lime);
-            z-index: 1000; transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); padding: 40px 25px; display: flex; flex-direction: column;
+            z-index: 2000; transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1); padding: 40px 25px; display: flex; flex-direction: column;
         }
         .cart-panel.active { right: 0; }
         .cart-item { display: flex; justify-content: space-between; padding: 15px 0; border-bottom: 1px solid #111; font-size: 0.9rem; }
         .checkout-btn { width: 100%; background: var(--shift-lime); border: none; padding: 18px; font-family: var(--font-display); cursor: pointer; margin-top: 25px; text-transform: uppercase; }
-        #cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; z-index: 999; backdrop-filter: blur(5px); }
+        #cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; z-index: 1500; backdrop-filter: blur(5px); }
         #cart-overlay.active { display: block; }
 
-        /* ЗЕЛЕНАЯ ПОЛОСКА (CUSTOMIZER) */
+        /* ЗЕЛЕНАЯ ПОЛОСКА */
         .customizer {
             background: var(--shift-lime); color: black; padding: 15px 5%;
             position: fixed; bottom: 0; left: 0; width: 100%; display: flex;
             justify-content: center; gap: 40px; font-weight: 800;
-            text-transform: uppercase; font-size: 0.7rem; z-index: 90;
+            text-transform: uppercase; font-size: 0.7rem; z-index: 900;
             border-top: 2px solid black; letter-spacing: 1px;
         }
 
         /* MOBILE FIX */
         @media (max-width: 768px) { 
-            nav { justify-content: space-between; padding: 1rem 5%; }
+            nav { justify-content: space-between; padding: 0.8rem 5%; }
+            .logo-img { height: 32px; }
             .nav-links { order: 3; width: 100%; justify-content: center; gap: 2rem; border-top: 1px solid #111; padding-top: 10px; margin-top: 5px; }
-            .logo { font-size: 0.95rem; }
             .customizer { gap: 15px; font-size: 0.6rem; padding: 12px; }
             .cart-panel { width: 100%; right: -100%; }
         }
@@ -139,7 +143,9 @@
 
     <div id="wrapper" class="fade-wrapper">
         <nav>
-            <a href="index.html" class="logo">LUMEN<span>SHIFT</span></a>
+            <a href="index.html" class="logo">
+                <img src="images/ls.png" alt="LUMEN SHIFT" class="logo-img">
+            </a>
             
             <div class="nav-links">
                 <a href="menu.html" style="color: var(--shift-lime)">Menu</a>
@@ -218,22 +224,6 @@
                         <div class="img-container"><img src="menu/matchaenergy.png"></div>
                         <h3>Matcha Energy Bar</h3><p>Raw vegan slow-release caffeine fuel.</p>
                         <div class="card-footer"><span class="price">£3.50</span><button class="add-btn">+</button></div>
-                    </div>
-                </div>
-            </section>
-
-            <section>
-                <div class="category-header"><h2>Hardware</h2></div>
-                <div class="grid">
-                    <div class="menu-card" data-name="Core Blend (250g)" data-price="12.00">
-                        <div class="img-container"><img src="menu/coreblend.png"></div>
-                        <h3>Core Blend (250g)</h3><p>Weekly roasted chocolate & cherry notes.</p>
-                        <div class="card-footer"><span class="price">£12.00</span><button class="add-btn">+</button></div>
-                    </div>
-                    <div class="menu-card" data-name="SHIFT Tumbler" data-price="24.00">
-                        <div class="img-container"><img src="menu/tumbler.png"></div>
-                        <h3>SHIFT Tumbler</h3><p>Insulated matte black steel vessel.</p>
-                        <div class="card-footer"><span class="price">£24.00</span><button class="add-btn">+</button></div>
                     </div>
                 </div>
             </section>
