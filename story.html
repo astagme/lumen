@@ -38,15 +38,20 @@
         }
         .fade-wrapper.is-visible { opacity: 1; transform: translateY(0); filter: blur(0); }
 
+        /* НАВИГАЦИЯ */
         nav {
             display: flex; justify-content: space-between; align-items: center;
-            padding: 1.5rem 5%; position: sticky; top: 0; z-index: 100;
+            padding: 1rem 5%; position: sticky; top: 0; z-index: 1000;
             background: rgba(15, 15, 15, 0.9); backdrop-filter: blur(10px);
             border-bottom: 1px solid #222;
         }
 
-        .logo { font-family: var(--font-display); text-decoration: none; color: white; text-transform: uppercase; font-size: 1.2rem; }
-        .logo span { color: var(--shift-lime); }
+        /* ЛОГОТИП */
+        .logo-img {
+            height: 40px;
+            width: auto;
+            display: block;
+        }
 
         .nav-links a {
             text-decoration: none; color: var(--text-white); font-weight: 700;
@@ -78,7 +83,7 @@
             grid-template-columns: 1fr 1fr; 
             gap: 60px; 
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), 
-                        url('images/story.png') center/cover no-repeat; /* Путь к картинке с креслом */
+                        url('images/story.png') center/cover no-repeat;
             padding: 80px 60px; 
             border: 1px solid #222; 
             position: relative;
@@ -106,13 +111,17 @@
         @media (max-width: 900px) {
             .feedback-section { grid-template-columns: 1fr; padding: 40px; }
             form { padding: 20px; }
+            .logo-img { height: 32px; }
+            .nav-links a { margin-left: 1rem; font-size: 0.7rem; }
         }
     </style>
 </head>
 <body oncontextmenu="return false;">
 
     <nav>
-        <a href="index.html" class="logo">LUMEN<span>SHIFT</span></a>
+        <a href="index.html" class="logo">
+            <img src="images/ls.png" alt="LUMEN SHIFT" class="logo-img">
+        </a>
         <div class="nav-links">
             <a href="menu.html">Menu</a>
             <a href="story.html" style="color: var(--shift-lime)">Locations</a>
