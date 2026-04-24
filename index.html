@@ -57,18 +57,11 @@
             flex-wrap: wrap;
         }
 
-        /* ЛОГОТИП */
+        /* ЛОГОТИП (БЕЗ АНИМАЦИИ) */
         .logo-img {
             height: 45px;
             width: auto;
             display: block;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            filter: drop-shadow(0 0 0px var(--shift-lime));
-        }
-
-        .logo:hover .logo-img {
-            transform: scale(1.1) rotate(-3deg);
-            filter: drop-shadow(0 0 15px var(--shift-lime));
         }
 
         .nav-links { display: flex; gap: 2rem; }
@@ -316,14 +309,12 @@
     <div id="cart-overlay" onclick="toggleCart()"></div>
 
     <script>
-        // Анимация плавного появления
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => { 
                 document.getElementById('wrapper').classList.add('is-visible'); 
             }, 100);
         });
 
-        // Открытие/закрытие корзины
         function toggleCart() {
             document.getElementById('side-cart').classList.toggle('active');
             document.getElementById('cart-overlay').classList.toggle('active');
